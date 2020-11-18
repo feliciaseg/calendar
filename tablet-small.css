@@ -1,0 +1,11 @@
+/* SMALL TABLETS */
+/* max-width: 1024px */
+
+body {
+    flex-direction: column;
+}
+
+aside {
+    width: 100%;
+    height: 20rem;
+}

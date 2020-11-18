@@ -1,23 +1,25 @@
 
-body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    display:flex;
+}
+
+body {
     flex-direction: row;
 }
 
-
-.aside {
+aside {
     /* background-color: #f2f2f2; */
     background-color: aqua;
-    height:100%;
-    max-width:20rem;
+    width: 20rem;
+    height: 100%;
 }
 
 main {
     width: 100%;
+    height: 100%;
 }
 
 

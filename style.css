@@ -1,0 +1,23 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+}
+
+
+.aside {
+    /* background-color: #f2f2f2; */
+    background-color: aqua;
+    height:100%;
+    max-width:20rem;
+}
+
+main {
+    width: 100%;
+}
+
+

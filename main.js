@@ -58,26 +58,25 @@ async function getApiForNextMonth(nextMonth) {
 
 function getPreviousMonth() {
     const date = new Date();
-    const previousMonth = date.getMonth();
+    const previousMonth = date.getMonth() - 1 ;
     return previousMonth;
 }
 
 function getCurrentMonth() {
     const date = new Date();
-    const currentMonth = date.getMonth() + 1;
+    const currentMonth = date.getMonth() + 0;
     return currentMonth;
 }
 
 function getNextMonth() {
     const date = new Date();
-    const nextMonth = date.getMonth() + 2;
+    const nextMonth = date.getMonth() + 1;
     return nextMonth;
 }
 
 function createCalendarDays(currentMonthsData) {
-    const calendar = document.getElementById("calendar")
-
     if (currentMonthsData) {
+        const calendar = document.getElementById("calendar")
         const data = currentMonthsData;
         const days = data.dagar;
         const firstDayInCurrentMonth = days[0]
@@ -86,26 +85,26 @@ function createCalendarDays(currentMonthsData) {
         for (day in days) {
             const div = document.createElement("div")
             const date = document.createElement("p")
-            date.innerHTML = Number(day) + 1;
+
+            const dateForDay = formatDates(day, days);
+            date.innerHTML = dateForDay;
+            styleForWeekendDates(day, days, div)
+
             calendar.append(div)
             div.append(date)
-    
-            if (days[day].veckodag === "Söndag") {
-                div.style.backgroundColor = "gray"
-            }
         }
     }
 }
 
 function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) {
-    const calendar = document.getElementById("calendar")
-
     if (currentMonthsData && previousMonthsData) {
-        const currentDays = currentMonthsData.dagar;
+        const calendar = document.getElementById("calendar")
         const previousMonthsDays = previousMonthsData.dagar;
+
+        const currentDays = currentMonthsData.dagar;
         const firstDayInCurrentMonth = currentDays[0];
 
-        fillerDivs = {
+        divsToFill = {
             "Måndag": 0,
             "Tisdag": 1,
             "Onsdag": 2,
@@ -115,50 +114,49 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
             "Söndag": 6
         }
     
-        for (number in fillerDivs) {
+        for (number in divsToFill) {
             if (firstDayInCurrentMonth.veckodag === number) {
-                const emptySlots = fillerDivs[number];
-                const fillerDays = previousMonthsDays.splice((previousMonthsDays.length - emptySlots), emptySlots)
+                const emptySlots = divsToFill[number];
+                const days = previousMonthsDays.splice((previousMonthsDays.length - emptySlots), emptySlots)
 
-                for (day in fillerDays) {
-                    const fillerDiv = document.createElement("div");
-                    const fillerDateP = document.createElement("p");
+                for (day in days) {
+                    const div = document.createElement("div");
+                    const date = document.createElement("p");
 
-
-                    const fillerDates = fillerDays[day].datum.split("-")
-                    const dateForDay = fillerDates[fillerDates.length - 1];
-                    fillerDateP.innerHTML = dateForDay;
-                    //fillerDate.innerHTML = fillerDays[day].datum;
-                    fillerDiv.style.backgroundColor = "lightGrey";
+                    const dateForDay = formatDates(day, days);
+                    date.innerHTML = dateForDay;
+                    date.style.color = "gray"
+                    styleForWeekendDates(day, days, div)
                     
-                    fillerDiv.append(fillerDateP)
-                    calendar.append(fillerDiv)
+                    div.append(date)
+                    calendar.append(div)
                 }
             }
         }
     }
-
 }
 
 function addFillerDivsAfterCalendarDays(nextMonthsData) {
-    const calendar = document.getElementById("calendar")
-    const totalGridCapacity = calculateCalendarGrid(calendar);
-    const currentDivsCount = calendar.children;
-    const emptySlots = totalGridCapacity - currentDivsCount.length;
+    if (nextMonthsData) {
+        const calendar = document.getElementById("calendar")
+        const totalGridCapacity = calculateCalendarGrid(calendar);
+        const currentDivsCount = calendar.children;
+        const emptySlots = totalGridCapacity - currentDivsCount.length;
 
-    const fillerDays = nextMonthsData.dagar.slice(0, emptySlots)
+        const days = nextMonthsData.dagar.slice(0, emptySlots)
 
-    for (day in fillerDays) {
-        const fillerDiv = document.createElement("div");
-        fillerDiv.style.backgroundColor = "lightGrey";
+        for (day in days) {
+            const div = document.createElement("div");
+            const date = document.createElement("p");
 
-        const fillerDateP = document.createElement("p")
-        fillerDateP.innerHTML = Number(day) + 1;
-        fillerDiv.append(fillerDateP);
-        calendar.append(fillerDiv)
+            const dateForDay = formatDates(day, days);
+            
+            date.innerHTML = dateForDay;
+            div.style.color = "grey";
+            div.append(date);
+            calendar.append(div)
 
-        if (fillerDays[day].veckodag === "Söndag") {
-            fillerDiv.style.backgroundColor = "gray";
+            styleForWeekendDates(day, days, div)
         }
     }
 }
@@ -182,4 +180,21 @@ function calculateCalendarGrid(calendar) {
 
     const totalGridCapacity = gridColumnIndex * gridRowIndex;
     return totalGridCapacity;
+}
+
+function formatDates(day, days) {
+    const dates = days[day].datum.split("-")
+    let dateForDay = dates.splice(dates.length - 1)
+
+    if (dateForDay < 10) {
+        dateForDay = dateForDay[dateForDay.length - 1].substring(1)
+    }
+
+    return dateForDay;
+}
+
+function styleForWeekendDates(day, days, div) {
+    if (days[day].veckodag === "Lördag" || days[day].veckodag === "Söndag") {
+        div.style.backgroundColor = "lightgray";
+    }
 }

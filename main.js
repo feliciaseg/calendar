@@ -88,7 +88,8 @@ function createCalendarDays(currentMonthsData) {
 
             const dateForDay = formatDates(day, days);
             date.innerHTML = dateForDay;
-            styleForWeekendDates(day, days, div)
+            div.classList.add("calendar-div");
+            addClassForWeekendDates(day, days, div)
 
             calendar.append(div)
             div.append(date)
@@ -126,7 +127,8 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
                     const dateForDay = formatDates(day, days);
                     date.innerHTML = dateForDay;
                     date.style.color = "gray"
-                    styleForWeekendDates(day, days, div)
+                    div.classList.add("calendar-div", "filler-div");
+                    addClassForWeekendDates(day, days, div)
                     
                     div.append(date)
                     calendar.append(div)
@@ -153,10 +155,11 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
             
             date.innerHTML = dateForDay;
             div.style.color = "grey";
+            div.classList.add("calendar-div", "filler-div");
             div.append(date);
             calendar.append(div)
 
-            styleForWeekendDates(day, days, div)
+            addClassForWeekendDates(day, days, div)
         }
     }
 }
@@ -193,8 +196,8 @@ function formatDates(day, days) {
     return dateForDay;
 }
 
-function styleForWeekendDates(day, days, div) {
+function addClassForWeekendDates(day, days, div) {
     if (days[day].veckodag === "Lördag" || days[day].veckodag === "Söndag") {
-        div.style.backgroundColor = "lightgray";
+        div.classList.add("weekend-div");
     }
 }

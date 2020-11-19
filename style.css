@@ -4,6 +4,8 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Inter', sans-serif;
+
 }
 
 body {
@@ -12,7 +14,7 @@ body {
 
 aside {
     /* background-color: #f2f2f2; */
-    background-color: aqua;
+    /* Jag har lagt till ovan i ''reusable classes'' istället /FS */
     width: 20rem;
     height: 100%;
 }
@@ -22,4 +24,9 @@ main {
     height: 100%;
 }
 
+
+.time-and-date h3 {
+    font-size: 1.8rem;
+    padding: 0rem 1rem;
+}
 

@@ -11,11 +11,13 @@ async function getSvenskaDagarApi() {
     const currentMonth = getCurrentMonth();
     const nextMonth = getNextMonth();
 
-    getApiForPreviousMonth(previousMonth);
+    const previousMonthsData = await getApiForPreviousMonth(previousMonth);
     const currentMonthsData = await getApiForCurrentMonth(currentMonth);
-    console.log("currentMonthsData"  + currentMonthsData)
-    getApiForNextMonth(nextMonth);
-    createCalendarDays(currentMonthsData)
+    const nextMonthsData = await getApiForNextMonth(nextMonth);
+
+    addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData);
+    createCalendarDays(currentMonthsData);
+    addFillerDivsAfterCalendarDays(nextMonthsData);
 }
 
 async function getApiForPreviousMonth(previousMonth) {
@@ -74,62 +76,90 @@ function getNextMonth() {
 
 function createCalendarDays(currentMonthsData) {
     const calendar = document.getElementById("calendar")
-    const data = currentMonthsData;
 
-    if (data) {
-        const dagar = data.dagar;
-        const firstDayInMonth = dagar[0]
-        addFillerDivsBeforeCalendarDays(firstDayInMonth);
+    if (currentMonthsData) {
+        const data = currentMonthsData;
+        const days = data.dagar;
+        const firstDayInCurrentMonth = days[0]
+        addFillerDivsBeforeCalendarDays(firstDayInCurrentMonth);
 
-        for (dag in dagar) {
+        for (day in days) {
             const div = document.createElement("div")
             const date = document.createElement("p")
-            date.innerHTML = Number(dag) + 1;
+            date.innerHTML = Number(day) + 1;
             calendar.append(div)
             div.append(date)
     
-            if (dagar[dag].veckodag === "Söndag") {
+            if (days[day].veckodag === "Söndag") {
                 div.style.backgroundColor = "gray"
             }
         }
-        addFillerDivsAfterCalendarDays();
     }
 }
 
-function addFillerDivsBeforeCalendarDays(firstDayInMonth) {
+function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) {
     const calendar = document.getElementById("calendar")
 
-    fillerDivs = {
-        "Måndag": 0,
-        "Tisdag": 1,
-        "Onsdag": 2,
-        "Torsdag": 3,
-        "Fredag": 4,
-        "Lördag": 5,
-        "Söndag": 6
-    }
+    if (currentMonthsData && previousMonthsData) {
+        const currentDays = currentMonthsData.dagar;
+        const previousMonthsDays = previousMonthsData.dagar;
+        const firstDayInCurrentMonth = currentDays[0];
 
-    for (number in fillerDivs) {
-        if (firstDayInMonth.veckodag === number) {
-            for (i = 0; i < fillerDivs[number]; i++) {
-                const fillerDiv = document.createElement("div");
-                fillerDiv.style.backgroundColor = "lightGrey";
-                calendar.append(fillerDiv)
+        fillerDivs = {
+            "Måndag": 0,
+            "Tisdag": 1,
+            "Onsdag": 2,
+            "Torsdag": 3,
+            "Fredag": 4,
+            "Lördag": 5,
+            "Söndag": 6
+        }
+    
+        for (number in fillerDivs) {
+            if (firstDayInCurrentMonth.veckodag === number) {
+                const emptySlots = fillerDivs[number];
+                const fillerDays = previousMonthsDays.splice((previousMonthsDays.length - emptySlots), emptySlots)
+
+                for (day in fillerDays) {
+                    const fillerDiv = document.createElement("div");
+                    const fillerDateP = document.createElement("p");
+
+
+                    const fillerDates = fillerDays[day].datum.split("-")
+                    const dateForDay = fillerDates[fillerDates.length - 1];
+                    fillerDateP.innerHTML = dateForDay;
+                    //fillerDate.innerHTML = fillerDays[day].datum;
+                    fillerDiv.style.backgroundColor = "lightGrey";
+                    
+                    fillerDiv.append(fillerDateP)
+                    calendar.append(fillerDiv)
+                }
             }
         }
     }
+
 }
 
-function addFillerDivsAfterCalendarDays() {
+function addFillerDivsAfterCalendarDays(nextMonthsData) {
     const calendar = document.getElementById("calendar")
     const totalGridCapacity = calculateCalendarGrid(calendar);
     const currentDivsCount = calendar.children;
     const emptySlots = totalGridCapacity - currentDivsCount.length;
 
-    for (i = 0; i < emptySlots; i++) {
+    const fillerDays = nextMonthsData.dagar.slice(0, emptySlots)
+
+    for (day in fillerDays) {
         const fillerDiv = document.createElement("div");
         fillerDiv.style.backgroundColor = "lightGrey";
+
+        const fillerDateP = document.createElement("p")
+        fillerDateP.innerHTML = Number(day) + 1;
+        fillerDiv.append(fillerDateP);
         calendar.append(fillerDiv)
+
+        if (fillerDays[day].veckodag === "Söndag") {
+            fillerDiv.style.backgroundColor = "gray";
+        }
     }
 }
 

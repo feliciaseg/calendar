@@ -26,6 +26,10 @@ main {
     height: 100%;
 }
 
+.todo-input-field {
+    display: none;
+}
+
 .remove-me {
     height: 10rem;
 }
@@ -62,6 +66,7 @@ span {
 input {
     padding: .3rem;
     border: none;
+}
 
 .days {
     height: 3rem;

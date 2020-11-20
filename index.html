@@ -64,7 +64,20 @@
     <!-- KALENDER VIEW -->
    <main> 
         <div class="calendar-container">
-            <div class="remove-me"> November 2020 typ</div>
+            <div class="month-container flex justify-space-between align-center">
+                <button id="month-button-previous" class="month-button previous-button flex center">
+                    <span class="material-icons">
+                        arrow_back
+                    </span>
+                </button>
+                <p id="month-and-year" class="bold">November</p>
+                <button id="month-button-next" class="month-button next-button flex center">
+                    <span class="material-icons">
+                        arrow_forward
+                    </span>
+                </button>
+            </div>
+
             <div class="days grid text-right">
                 <p>Mon</p>
                 <p>Tue</p>
@@ -75,7 +88,7 @@
                 <p>Sun</p>
             </div>
             <div id="calendar" class="calendar grid"></div>
-            <!-- Content inserted from main.js -->
+            <!-- Content inserted from calendar.js -->
             </div>
         </div> 
    </main>

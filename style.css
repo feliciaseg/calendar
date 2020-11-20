@@ -1,23 +1,39 @@
+* {
+    box-sizing: border-box;
+}
 
-body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    display:flex;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
     flex-direction: row;
 }
 
-
-.aside {
+aside {
     /* background-color: #f2f2f2; */
-    background-color: aqua;
-    height:100%;
-    max-width:20rem;
+    /* Jag har lagt till ovan i ''reusable classes'' istället /FS */
+    width: 20rem;
+    height: 100%;
 }
 
 main {
+    width: calc(100% - 20rem);
+    height: 100%;
+}
+
+.remove-me {
+    height: 10rem;
+}
+
+.calendar-container {
     width: 100%;
+    height: 100%;
+    padding: 5rem 3rem;
 }
 .new-items-box {
     display: flex;
@@ -30,11 +46,12 @@ label {
     justify-content: left;
     padding-top: 1rem;
 }
+
 button {
-border: none;
-border-radius: .3rem;
-padding: .5rem;
-margin-top: 5rem;
+    border: none;
+    border-radius: .3rem;
+    padding: .5rem;
+    margin-top: 5rem;
 }
 
 span {
@@ -45,5 +62,44 @@ span {
 input {
     padding: .3rem;
     border: none;
+
+.days {
+    height: 3rem;
+    font-size: 1.1rem;
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar {
+    width: 100%;
+    height: calc(100% - 13rem);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.calendar-div {
+    border: 0.1rem solid darkgray;
+    background-color: white;
+}
+
+.calendar-div p {
+    font-weight: 900;
+    text-align: right;
+    margin: 0.8rem;
+    font-size: 1.5rem;
+}
+
+.filler-div p {
+    color: rgb(177, 177, 177)!important;
+}
+
+.weekend-div {
+    background-color: rgb(235, 235, 235);
+}
+
+
+.time-and-date h3 {
+    font-size: 1.8rem;
+    padding: 0rem 1rem;
 }
 

@@ -4,25 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miniprojekt</title>
-    <link rel= "stylesheet" href="style.css">
-    <link rel="stylesheet" href="reusable-classes.css">
-    <link rel = "stylesheet" href="media-q.css">
-    <!-- icons -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+      rel="stylesheet">  
+  
+    <link rel= "stylesheet" href="./style.css">
+    <link rel = "stylesheet" href="./tablet-large.css" media="screen and (max-width: 1024px)">
+    <link rel = "stylesheet" href="./tablet-small.css" media="screen and (max-width: 768px)">
+    <link rel = "stylesheet" href="./mobile.css" media="screen and (max-width: 480px)">
+    <link rel= "stylesheet" href="./reusable-classes.css">
 
-    
-
+    <script src="main.js"></script>
+    <script src="calendar.js"></script>
+  
 </head>
-<body>
+<body class="flex">
 
     <!-- Gråa Diven Todolist -->
-    
-    <aside class= "aside"> 
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, placeat quae. At quam soluta corporis, excepturi adipisci est quibusdam provident enim quod accusamus, velit officiis architecto non vero. Eveniet, perferendis.
-    
-        <div> Datum och tid</div>
-        <div class="new-items-box">
+                     
+    <aside class= "aside light-grey-bg"> 
+        <div class="primary-content">
+          <div class= "time-and-date"> 
+              <h3 class="bold" id="showTime"> <!-- Code injected by JS --> </h4>
+              <h3 class= "bold" id= "showDate"> <!-- Code injected by JS -->  </h4>
+          </div>
+
+          <div> To- do listan</div>
+        </div>
+  
+        <div class="todo-input-field">
+          <div> Datum och tid</div>
+          <div class="new-items-box">
             <form class="flex column justify-center">
                 <h3>New task</h3>
                 <div id="inline" data-date="01/05/2020">
@@ -42,18 +56,29 @@
                 </div>
             
             </form>
-       </div>
-    
+          </div>
+        </div>
+  
     </aside>
 
 
     <!-- KALENDER VIEW -->
    <main> 
-       
-    <div> November 2020 typ</div>
-    
-    <div>KALENDER </div>
-    
+        <div class="calendar-container">
+            <div class="remove-me"> November 2020 typ</div>
+            <div class="days grid text-right">
+                <p>Mon</p>
+                <p>Tue</p>
+                <p>Wed</p>
+                <p>Thu</p>
+                <p>Fri</p>
+                <p>Sat</p>
+                <p>Sun</p>
+            </div>
+            <div id="calendar" class="calendar grid"></div>
+            <!-- Content inserted from main.js -->
+            </div>
+        </div> 
    </main>
   
 

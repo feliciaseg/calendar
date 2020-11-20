@@ -7,9 +7,8 @@ window.onload = main;
 
 async function main() {
     getSvenskaDagarApi();
-    createCalendarDays();
     addEventListeners();
-    setYearIntervall
+    setYearInterval();
 }
 
 function addEventListeners() {
@@ -106,8 +105,8 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
         const calendar = document.getElementById("calendar")
         const previousMonthsDays = previousMonthsData.dagar;
 
-        const currentDays = currentMonthsData.dagar;
-        const firstDayInCurrentMonth = currentDays[0];
+        const currentMonthsDays = currentMonthsData.dagar;
+        const firstDayInCurrentMonth = currentMonthsDays[0];
 
         divsToFill = {
             "Måndag": 0,
@@ -154,7 +153,6 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
         for (day in days) {
             const div = document.createElement("div");
             const date = document.createElement("p");
-
             const dateForDay = formatDates(day, days);
             
             date.innerHTML = dateForDay;
@@ -237,11 +235,11 @@ function changeMonth(button) {
         month -= 1;
     }
 
-    setYearIntervall();
+    setYearInterval();
     getSvenskaDagarApi();
 }
 
-function setYearIntervall() {
+function setYearInterval() {
    if (month === 0) {
        month = 12;
        year -= 1;
@@ -262,5 +260,4 @@ function presentCurrentMonthAndYear(data) {
     const formattedMonth = formatMonth(month);
 
     monthContainer.innerHTML = formattedMonth + " " + year;
-    
 }

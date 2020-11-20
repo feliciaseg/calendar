@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miniprojekt</title>
     <link rel= "stylesheet" href="style.css">
+    <link rel="stylesheet" href="reusable-classes.css">
     <link rel = "stylesheet" href="media-q.css">
+    <!-- icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    
+
 </head>
 <body>
 
@@ -15,7 +22,27 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, placeat quae. At quam soluta corporis, excepturi adipisci est quibusdam provident enim quod accusamus, velit officiis architecto non vero. Eveniet, perferendis.
     
         <div> Datum och tid</div>
-        <div> To- do listan</div>
+        <div class="new-items-box">
+            <form class="flex column justify-center">
+                <h3>New task</h3>
+                <div id="inline" data-date="01/05/2020">
+                </div>
+                <div id="range"></div>
+
+                    <label for="datepicker">Description</label> 
+                    <input type="text" name="datepicker" maxlength="35">
+
+                    <label for="start">Date</label>
+                    <input type="date" name="bday" required pattern="\d{4}-\d{2}-\d{2}">
+
+                    <label for="end">Time</label>
+                    <input type="time" id="appt" name="appt"min="09:00" max="18:00" required>
+
+                    <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+                </div>
+            
+            </form>
+       </div>
     
     </aside>
 

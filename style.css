@@ -19,5 +19,31 @@ body {
 main {
     width: 100%;
 }
+.new-items-box {
+    display: flex;
+    justify-content: center;
+    
+}
+label {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding-top: 1rem;
+}
+button {
+border: none;
+border-radius: .3rem;
+padding: .5rem;
+margin-top: 5rem;
+}
 
+span {
+    padding-right: 1rem;
+    font-size: 1.5rem;
+}
+
+input {
+    padding: .3rem;
+    border: none;
+}
 

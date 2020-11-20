@@ -9,6 +9,7 @@ async function main() {
     getSvenskaDagarApi();
     createCalendarDays();
     addEventListeners();
+    setYearIntervall
 }
 
 function addEventListeners() {
@@ -31,11 +32,14 @@ async function getSvenskaDagarApi() {
 
 async function getApiForPreviousMonth() {
     let previousMonth = month - 1;
+    let yearForPreviousMonth = year;
     if (previousMonth === 0 ) {
         previousMonth = 12;
+        yearForPreviousMonth = year - 1;
     }
+
     try {
-        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + year + "/" + previousMonth)
+        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + yearForPreviousMonth + "/" + previousMonth)
         const data = await result.json();
         return data;
     }
@@ -57,11 +61,13 @@ async function getApiForCurrentMonth() {
 
 async function getApiForNextMonth() {
     let nextMonth = month + 1;
+    let yearForNextMonth = year;
     if (nextMonth === 13 ) {
         nextMonth = 1;
+        yearForNextMonth = year + 1;
     }
     try {
-        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + year + "/" + nextMonth)
+        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + yearForNextMonth + "/" + nextMonth)
         const data = await result.json();
         return data;
     }
@@ -91,6 +97,7 @@ function createCalendarDays(currentMonthsData) {
             calendar.append(div)
             div.append(date)
         }
+        presentCurrentMonthAndYear(currentMonthsData);
     }
 }
 
@@ -198,33 +205,20 @@ function addClassForWeekendDates(day, days, div) {
     }
 }
 
-function changeMonth(button) {
-    console.log("hello")
-    const todaysDate = new Date();
-    const month = date.getMonth();
-
-    console.log(button)
-    // const currentYear = todaysDate.getFullYear();
-    /*const currentMonthFormatted = formatMonth(currentMonth);
-
-    const container = document.getElementById("month-and-year")
-    container.innerHTML = currentMonthFormatted + " " + currentYear;*/
-}
-
 function formatMonth(month) {
     switch(month) {
-        case 0: return "January";
-        case 1: return "February";
-        case 2: return "March";
-        case 3: return "April";
-        case 4: return "May"
-        case 5: return "June";
-        case 6: return "July";
-        case 7: return "August";
-        case 8: return "September";
-        case 9: return "October";
-        case 10: return "November";
-        case 11: return "December";
+        case 01: return "January";
+        case 02: return "February";
+        case 03: return "March";
+        case 04: return "April";
+        case 05: return "May"
+        case 06: return "June";
+        case 07: return "July";
+        case 08: return "August";
+        case 09: return "September";
+        case 10: return "October";
+        case 11: return "November";
+        case 12: return "December";
     }
 }
 
@@ -250,9 +244,23 @@ function changeMonth(button) {
 function setYearIntervall() {
    if (month === 0) {
        month = 12;
+       year -= 1;
    }
    else if (month === 13) {
        month = 1;
+       year += 1;
    }
    console.log(month)
+}
+
+function presentCurrentMonthAndYear(data) {
+    const monthContainer = document.getElementById("month-and-year")
+    console.log(data)
+    const datumArray = data.startdatum.split("-")
+    const month = Number(datumArray[1]);
+
+    const formattedMonth = formatMonth(month);
+
+    monthContainer.innerHTML = formattedMonth + " " + year;
+    
 }

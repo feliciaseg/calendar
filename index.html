@@ -7,7 +7,9 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">  
+  
     <link rel= "stylesheet" href="./style.css">
     <link rel = "stylesheet" href="./tablet-large.css" media="screen and (max-width: 1024px)">
     <link rel = "stylesheet" href="./tablet-small.css" media="screen and (max-width: 768px)">
@@ -21,17 +23,42 @@
 <body class="flex">
 
     <!-- Gråa Diven Todolist -->
-    
+                     
     <aside class= "aside light-grey-bg"> 
-        
-        
-        <div class= "time-and-date"> 
-            <h3 class="bold" id="showTime"> <!-- Code injected by JS --> </h4>
-            <h3 class= "bold" id= "showDate"> <!-- Code injected by JS -->  </h4>
+        <div class="primary-content">
+          <div class= "time-and-date"> 
+              <h3 class="bold" id="showTime"> <!-- Code injected by JS --> </h4>
+              <h3 class= "bold" id= "showDate"> <!-- Code injected by JS -->  </h4>
+          </div>
+
+          <div> To- do listan</div>
         </div>
-        
-        <div> To- do listan</div>
-    
+  
+        <div class="todo-input-field">
+          <div> Datum och tid</div>
+          <div class="new-items-box">
+            <form class="flex column justify-center">
+                <h3>New task</h3>
+                <div id="inline" data-date="01/05/2020">
+                </div>
+                <div id="range"></div>
+
+                    <label for="datepicker">Description</label> 
+                    <input type="text" name="datepicker" maxlength="35">
+
+                    <label for="start">Date</label>
+                    <input type="date" name="bday" required pattern="\d{4}-\d{2}-\d{2}">
+
+                    <label for="end">Time</label>
+                    <input type="time" id="appt" name="appt"min="09:00" max="18:00" required>
+
+                    <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+                </div>
+            
+            </form>
+          </div>
+        </div>
+  
     </aside>
 
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miniprojekt</title>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
     
@@ -12,7 +13,10 @@
     <link rel = "stylesheet" href="./tablet-small.css" media="screen and (max-width: 768px)">
     <link rel = "stylesheet" href="./mobile.css" media="screen and (max-width: 480px)">
     <link rel= "stylesheet" href="./reusable-classes.css">
-    <script defer src= "main.js"></script>
+
+    <script src="main.js"></script>
+    <script src="calendar.js"></script>
+  
 </head>
 <body class="flex">
 
@@ -33,11 +37,21 @@
 
     <!-- KALENDER VIEW -->
    <main> 
-       
-    <div> November 2020 typ</div>
-    
-    <div>KALENDER </div>
-    
+        <div class="calendar-container">
+            <div class="remove-me"> November 2020 typ</div>
+            <div class="days grid text-right">
+                <p>Mon</p>
+                <p>Tue</p>
+                <p>Wed</p>
+                <p>Thu</p>
+                <p>Fri</p>
+                <p>Sat</p>
+                <p>Sun</p>
+            </div>
+            <div id="calendar" class="calendar grid"></div>
+            <!-- Content inserted from main.js -->
+            </div>
+        </div> 
    </main>
   
 

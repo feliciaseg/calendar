@@ -1,29 +1,44 @@
+const todaysDate = new Date();
+let day = todaysDate.getDate();
+let month = todaysDate.getMonth() + 1;
+let year = todaysDate.getFullYear();
+
 window.onload = main;
 
 async function main() {
     getSvenskaDagarApi();
-    getCurrentMonth();
-    createCalendarDays();
+    addEventListeners();
+    setYearInterval();
+}
+
+function addEventListeners() {
+    const previousMonth = document.getElementById("month-button-previous");
+    const nextMonth = document.getElementById("month-button-next");
+
+    previousMonth.addEventListener("click", () => changeMonth(previousMonth));
+    nextMonth.addEventListener("click", () => changeMonth(nextMonth));
 }
 
 async function getSvenskaDagarApi() {
-    const previousMonth = getPreviousMonth();
-    const currentMonth = getCurrentMonth();
-    const nextMonth = getNextMonth();
-
-    const previousMonthsData = await getApiForPreviousMonth(previousMonth);
-    const currentMonthsData = await getApiForCurrentMonth(currentMonth);
-    const nextMonthsData = await getApiForNextMonth(nextMonth);
+    const previousMonthsData = await getApiForPreviousMonth();
+    const currentMonthsData = await getApiForCurrentMonth();
+    const nextMonthsData = await getApiForNextMonth();
 
     addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData);
     createCalendarDays(currentMonthsData);
     addFillerDivsAfterCalendarDays(nextMonthsData);
 }
 
-async function getApiForPreviousMonth(previousMonth) {
+async function getApiForPreviousMonth() {
+    let previousMonth = month - 1;
+    let yearForPreviousMonth = year;
+    if (previousMonth === 0 ) {
+        previousMonth = 12;
+        yearForPreviousMonth = year - 1;
+    }
+
     try {
-        const month = previousMonth;
-        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/2020/" + month)
+        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + yearForPreviousMonth + "/" + previousMonth)
         const data = await result.json();
         return data;
     }
@@ -32,10 +47,9 @@ async function getApiForPreviousMonth(previousMonth) {
     }
 }
 
-async function getApiForCurrentMonth(currentMonth) {
+async function getApiForCurrentMonth() {
     try {
-        const month = currentMonth;
-        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/2020/" + month)
+        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + year + "/" + month)
         const data = await result.json();
         return data;
     }
@@ -44,34 +58,21 @@ async function getApiForCurrentMonth(currentMonth) {
     }
 }
 
-async function getApiForNextMonth(nextMonth) {
+async function getApiForNextMonth() {
+    let nextMonth = month + 1;
+    let yearForNextMonth = year;
+    if (nextMonth === 13 ) {
+        nextMonth = 1;
+        yearForNextMonth = year + 1;
+    }
     try {
-        const month = nextMonth;
-        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/2020/" + month)
+        const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + yearForNextMonth + "/" + nextMonth)
         const data = await result.json();
         return data;
     }
     catch(error) {
         console.error(error)
     }
-}
-
-function getPreviousMonth() {
-    const date = new Date();
-    const previousMonth = date.getMonth();
-    return previousMonth;
-}
-
-function getCurrentMonth() {
-    const date = new Date();
-    const currentMonth = date.getMonth() + 1;
-    return currentMonth;
-}
-
-function getNextMonth() {
-    const date = new Date();
-    const nextMonth = date.getMonth() + 2;
-    return nextMonth;
 }
 
 function createCalendarDays(currentMonthsData) {
@@ -80,6 +81,7 @@ function createCalendarDays(currentMonthsData) {
         const data = currentMonthsData;
         const days = data.dagar;
         const firstDayInCurrentMonth = days[0]
+
         addFillerDivsBeforeCalendarDays(firstDayInCurrentMonth);
 
         for (day in days) {
@@ -94,6 +96,7 @@ function createCalendarDays(currentMonthsData) {
             calendar.append(div)
             div.append(date)
         }
+        presentCurrentMonthAndYear(currentMonthsData);
     }
 }
 
@@ -102,8 +105,8 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
         const calendar = document.getElementById("calendar")
         const previousMonthsDays = previousMonthsData.dagar;
 
-        const currentDays = currentMonthsData.dagar;
-        const firstDayInCurrentMonth = currentDays[0];
+        const currentMonthsDays = currentMonthsData.dagar;
+        const firstDayInCurrentMonth = currentMonthsDays[0];
 
         divsToFill = {
             "Måndag": 0,
@@ -150,7 +153,6 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
         for (day in days) {
             const div = document.createElement("div");
             const date = document.createElement("p");
-
             const dateForDay = formatDates(day, days);
             
             date.innerHTML = dateForDay;
@@ -199,4 +201,63 @@ function addClassForWeekendDates(day, days, div) {
     if (days[day].veckodag === "Lördag" || days[day].veckodag === "Söndag") {
         div.classList.add("weekend-div");
     }
+}
+
+function formatMonth(month) {
+    switch(month) {
+        case 01: return "January";
+        case 02: return "February";
+        case 03: return "March";
+        case 04: return "April";
+        case 05: return "May"
+        case 06: return "June";
+        case 07: return "July";
+        case 08: return "August";
+        case 09: return "September";
+        case 10: return "October";
+        case 11: return "November";
+        case 12: return "December";
+    }
+}
+
+function changeMonth(button) {
+    const calendar = document.getElementById("calendar");
+    let calendarChildren = calendar.children
+
+    while (calendarChildren.length > 0) {
+        calendarChildren[calendarChildren.length - 1].remove()
+    }
+
+    if (button.id === "month-button-next") {
+        month += 1
+    }
+    else if ( button.id === "month-button-previous" ) {
+        month -= 1;
+    }
+
+    setYearInterval();
+    getSvenskaDagarApi();
+}
+
+function setYearInterval() {
+   if (month === 0) {
+       month = 12;
+       year -= 1;
+   }
+   else if (month === 13) {
+       month = 1;
+       year += 1;
+   }
+   console.log(month)
+}
+
+function presentCurrentMonthAndYear(data) {
+    const monthContainer = document.getElementById("month-and-year")
+    console.log(data)
+    const datumArray = data.startdatum.split("-")
+    const month = Number(datumArray[1]);
+
+    const formattedMonth = formatMonth(month);
+
+    monthContainer.innerHTML = formattedMonth + " " + year;
 }

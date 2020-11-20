@@ -52,6 +52,10 @@
     color: #FF716E;
 }
 
+.light-grey-bg {
+    background-color: #F2F2F2;
+}
+
 .normal {
     font-weight: 300;
 }

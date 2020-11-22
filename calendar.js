@@ -1,3 +1,4 @@
+/** Varibles which set the current day, month and year */
 const todaysDate = new Date();
 let day = todaysDate.getDate();
 let month = todaysDate.getMonth() + 1;
@@ -5,12 +6,14 @@ let year = todaysDate.getFullYear();
 
 window.onload = main;
 
+/** Functions to run on window load */
 async function main() {
     getSvenskaDagarApi();
     addEventListeners();
     setYearInterval();
 }
 
+/** Adds event listeners */
 function addEventListeners() {
     const previousMonth = document.getElementById("month-button-previous");
     const nextMonth = document.getElementById("month-button-next");
@@ -19,6 +22,7 @@ function addEventListeners() {
     nextMonth.addEventListener("click", () => changeMonth(nextMonth));
 }
 
+/** Gets and forwards the result of fetching Svenska Dagar Api */
 async function getSvenskaDagarApi() {
     const previousMonthsData = await getApiForPreviousMonth();
     const currentMonthsData = await getApiForCurrentMonth();
@@ -29,6 +33,7 @@ async function getSvenskaDagarApi() {
     addFillerDivsAfterCalendarDays(nextMonthsData);
 }
 
+/** Fetches Svenska Dagar Api for the previous month */
 async function getApiForPreviousMonth() {
     let previousMonth = month - 1;
     let yearForPreviousMonth = year;
@@ -47,6 +52,7 @@ async function getApiForPreviousMonth() {
     }
 }
 
+/** Fetches Svenska Dagar Api for the current month */
 async function getApiForCurrentMonth() {
     try {
         const result = await fetch("https://sholiday.faboul.se/dagar/v2.1/" + year + "/" + month)
@@ -58,6 +64,7 @@ async function getApiForCurrentMonth() {
     }
 }
 
+/** Fetches Svenska Dagar Api for the next month */
 async function getApiForNextMonth() {
     let nextMonth = month + 1;
     let yearForNextMonth = year;
@@ -75,14 +82,15 @@ async function getApiForNextMonth() {
     }
 }
 
+/**
+ * Creates div containers in calendar for each day in the current month
+ * @param {Object} currentMonthsData
+ */
 function createCalendarDays(currentMonthsData) {
     if (currentMonthsData) {
         const calendar = document.getElementById("calendar")
         const data = currentMonthsData;
         const days = data.dagar;
-        const firstDayInCurrentMonth = days[0]
-
-        addFillerDivsBeforeCalendarDays(firstDayInCurrentMonth);
 
         for (day in days) {
             const div = document.createElement("div")
@@ -100,6 +108,11 @@ function createCalendarDays(currentMonthsData) {
     }
 }
 
+/**
+ * Creates filler div containers before the current months div containers representing the previous month
+ * @param {Object} currentMonthsData 
+ * @param {Object} previousMonthsData 
+ */
 function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) {
     if (currentMonthsData && previousMonthsData) {
         const calendar = document.getElementById("calendar")
@@ -141,6 +154,11 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
     }
 }
 
+
+/**
+ * Creates filler div containers after the current months div containers representing the next month
+ * @param {Object} nextMonthsData 
+ */
 function addFillerDivsAfterCalendarDays(nextMonthsData) {
     if (nextMonthsData) {
         const calendar = document.getElementById("calendar")
@@ -165,6 +183,10 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
     }
 }
 
+/**
+ * Calculates the total number of divs which fit within the calendar grid
+ * @param {Element} calendar 
+ */
 function calculateCalendarGrid(calendar) {
     let gridColumnStyle = getComputedStyle(calendar).gridTemplateColumns;
     let gridRowStyle = getComputedStyle(calendar).gridTemplateRows;
@@ -186,6 +208,11 @@ function calculateCalendarGrid(calendar) {
     return totalGridCapacity;
 }
 
+/**
+ * Returns the date representing the day in string form
+ * @param {String} day 
+ * @param {String} days 
+ */
 function formatDates(day, days) {
     const dates = days[day].datum.split("-")
     let dateForDay = dates.splice(dates.length - 1)
@@ -193,16 +220,26 @@ function formatDates(day, days) {
     if (dateForDay < 10) {
         dateForDay = dateForDay[dateForDay.length - 1].substring(1)
     }
-
     return dateForDay;
 }
 
+
+/**
+ * Adds specific classes to the divs which represent Saturday or Sunday
+ * @param {String} day 
+ * @param {String} days 
+ * @param {Element} div 
+ */
 function addClassForWeekendDates(day, days, div) {
     if (days[day].veckodag === "Lördag" || days[day].veckodag === "Söndag") {
         div.classList.add("weekend-div");
     }
 }
 
+/**
+ * Formats the month to string form
+ * @param {Number} month 
+ */
 function formatMonth(month) {
     switch(month) {
         case 01: return "January";
@@ -220,6 +257,10 @@ function formatMonth(month) {
     }
 }
 
+/**
+ * Removes the divs within the calendar and changes the month
+ * @param {Element} button 
+ */
 function changeMonth(button) {
     const calendar = document.getElementById("calendar");
     let calendarChildren = calendar.children
@@ -239,6 +280,8 @@ function changeMonth(button) {
     getSvenskaDagarApi();
 }
 
+
+/** Resets the monthly count and changes the year */
 function setYearInterval() {
    if (month === 0) {
        month = 12;
@@ -248,13 +291,15 @@ function setYearInterval() {
        month = 1;
        year += 1;
    }
-   console.log(month)
 }
 
-function presentCurrentMonthAndYear(data) {
+/**
+ * Changes the month which is presented in the month container
+ * @param {Object} currentMonthsData 
+ */
+function presentCurrentMonthAndYear(currentMonthsData) {
     const monthContainer = document.getElementById("month-and-year")
-    console.log(data)
-    const datumArray = data.startdatum.split("-")
+    const datumArray = currentMonthsData.startdatum.split("-")
     const month = Number(datumArray[1]);
 
     const formattedMonth = formatMonth(month);

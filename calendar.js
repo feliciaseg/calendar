@@ -100,10 +100,12 @@ function createCalendarDays(currentMonthsData) {
             date.innerHTML = dateForDay;
             div.classList.add("calendar-div");
             div.setAttribute("id", days[day].datum)
-            addClassForWeekendDates(day, days, div)
 
             calendar.append(div)
             div.append(date)
+
+            addClassForWeekendDates(day, days, div);
+            showHolidays(day, days, div);
         }
         presentCurrentMonthAndYear(currentMonthsData);
     }
@@ -145,10 +147,12 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
                     date.innerHTML = dateForDay;
                     date.style.color = "gray"
                     div.classList.add("calendar-div", "filler-div");
-                    addClassForWeekendDates(day, days, div)
                     
                     div.append(date)
                     calendar.append(div)
+
+                    addClassForWeekendDates(day, days, div);
+                    showHolidays(day, days, div);
                 }
             }
         }
@@ -179,7 +183,8 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
             div.append(date);
             calendar.append(div)
 
-            addClassForWeekendDates(day, days, div)
+            addClassForWeekendDates(day, days, div);
+            showHolidays(day, days, div);
         }
     }
 }
@@ -306,4 +311,20 @@ function presentCurrentMonthAndYear(currentMonthsData) {
     const formattedMonth = formatMonth(month);
 
     monthContainer.innerHTML = formattedMonth + " " + year;
+}
+
+/**
+ * Displays the holidays
+ * @param {String} day 
+ * @param {Object} days 
+ * @param {Element} div 
+ */
+function showHolidays(day, days, div) {
+    if (days[day].helgdag) {
+        const holiday = document.createElement("p")
+        holiday.innerHTML = days[day].helgdag
+        holiday.classList.add("holiday")
+
+        div.append(holiday)
+    }
 }

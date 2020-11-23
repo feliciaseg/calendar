@@ -33,8 +33,9 @@
           </div>
 
           <div class= "todo-container"> 
-            <ul id= "to-do-list"> 
-            </ul>
+            <div id= "todos"></div>
+            <!-- Lägg knappen utan för diven -->
+            
 
             <button id="openNewTask" class="primary-background"> Add item</button>
           </div>
@@ -43,9 +44,8 @@
   
         <div class="todo-input-field">
           <div class="new-items-box none" id="newTaskDiv">
-            <form class="flex column justify-center">
+            <form class="flex column justify-center" id="form">
                 <h3>New task</h3>
-                
                     <label for="datepicker">Description</label> 
                     <input type="text" name="datepicker" id="description" maxlength="35">
 
@@ -53,7 +53,7 @@
                     <input type="date" name="bday" id="datePicked" required pattern="\d{4}-\d{2}-\d{2}">
 
                     <label for="end">Time</label>
-                    <input type="time" id="appt" name="appt" id="timePicked" min="09:00" max="18:00" required>
+                    <input type="time"  name="appt" id="timePicked" required>
 
                     <button class="flex text-left primary-background align-center" type="add" id="addNewItem"><span>&#43;</span>Add new item</button>
                   </form>

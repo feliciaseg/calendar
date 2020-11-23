@@ -96,6 +96,7 @@ function createCalendarDays(currentMonthsData) {
         for (day in days) {
             const div = document.createElement("div")
             const date = document.createElement("p")
+
             const dateForDay = formatDates(day, days);
             date.innerHTML = dateForDay;
             date.classList.add("date-number")
@@ -221,7 +222,7 @@ function calculateCalendarGrid(calendar) {
 /**
  * Returns the date representing the day in string form
  * @param {String} day 
- * @param {String} days 
+ * @param {Object} days 
  */
 function formatDates(day, days) {
     const dates = days[day].datum.split("-")
@@ -237,7 +238,7 @@ function formatDates(day, days) {
 /**
  * Adds specific classes to the divs which represent Saturday or Sunday
  * @param {String} day 
- * @param {String} days 
+ * @param {Object} days 
  * @param {Element} div 
  */
 function addClassForWeekendDates(day, days, div) {

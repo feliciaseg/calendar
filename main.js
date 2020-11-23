@@ -51,7 +51,7 @@ function currentDate(){
     let dayOfTheMonth = date.getDate();
     
     //Allting tillsammans
-    let todaysDate = weekday + "," + " " + month + " " + dayOfTheMonth;
+    let todaysDate = weekday + "," + "<br> " + month + " " + dayOfTheMonth;
 
     //Visa det i HTML
     let showDate = document.getElementById("showDate")

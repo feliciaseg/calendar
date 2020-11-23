@@ -16,7 +16,7 @@
     <link rel = "stylesheet" href="./mobile.css" media="screen and (max-width: 480px)">
     <link rel= "stylesheet" href="./reusable-classes.css">
 
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
     <script src="calendar.js"></script>
   
 </head>
@@ -31,16 +31,18 @@
               <h3 class= "bold" id= "showDate"> <!-- Code injected by JS -->  </h3>
           </div>
 
-          <div> To- do listan</div>
+            <div> To- do listan
+            </div>
+            <div class="button-primary">
+                <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+            </div>
         </div>
   
         <div class="todo-input-field">
-          <div class="new-items-box">
-            <form class="flex column justify-center">
-                <h3>New task</h3>
-                <div id="inline" data-date="01/05/2020">
-                </div>
-                <div id="range"></div>
+          
+           <div class="new-items-box">
+             <h4>New task</h4>
+                <div class="input-form">
 
                     <label for="datepicker">Description</label> 
                     <input type="text" name="datepicker" maxlength="35">
@@ -50,13 +52,14 @@
 
                     <label for="end">Time</label>
                     <input type="time" id="appt" name="appt"min="09:00" max="18:00" required>
-
-                    <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
                 </div>
-            
-            </form>
-          </div>
-        </div>
+
+                <div class="button-box">
+                    <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+                </div> 
+          </div>       
+       </div>
+        
   
     </aside>
 

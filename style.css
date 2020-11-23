@@ -122,15 +122,30 @@ input {
 }
 
 .calendar-div {
+    display: grid;
+    padding: 1rem;
     border: 0.1rem solid darkgray;
     background-color: white;
+    grid-template-areas: 
+    ". date"
+    ". ."
+    "holiday holiday"
+    ;
 }
 
-.calendar-div p {
+.date-number {
+    height: fit-content;
+    justify-self: right;
     font-weight: 900;
-    text-align: right;
-    margin: 0.8rem;
+    margin: 0;
     font-size: 1.5rem;
+    grid-area: date;
+}
+
+.holiday {
+    align-self: end;
+    margin: 0;
+    grid-area: holiday;
 }
 
 .filler-div p {

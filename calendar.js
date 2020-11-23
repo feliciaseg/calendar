@@ -98,6 +98,8 @@ function createCalendarDays(currentMonthsData) {
             const date = document.createElement("p")
             const dateForDay = formatDates(day, days);
             date.innerHTML = dateForDay;
+            date.classList.add("date-number")
+            
             div.classList.add("calendar-div");
             div.setAttribute("id", days[day].datum)
 
@@ -145,6 +147,7 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
 
                     const dateForDay = formatDates(day, days);
                     date.innerHTML = dateForDay;
+                    date.classList.add("date-number")
                     date.style.color = "gray"
                     div.classList.add("calendar-div", "filler-div");
                     
@@ -179,6 +182,7 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
             const dateForDay = formatDates(day, days);
             
             date.innerHTML = dateForDay;
+            date.classList.add("date-number")
             div.classList.add("calendar-div", "filler-div");
             div.append(date);
             calendar.append(div)

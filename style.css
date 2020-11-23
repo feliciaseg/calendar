@@ -17,7 +17,7 @@ body {
 aside {
     /* background-color: #f2f2f2; */
     /* Jag har lagt till ovan i ''reusable classes'' istället /FS */
-    width: 20rem;
+    width: 28.8rem;
     height: 100%;
 }
 
@@ -25,9 +25,23 @@ main {
     width: calc(100% - 20rem);
     height: 100%;
 }
+h4 {
+    font-size: 2.2rem;
+}
 
 .remove-me {
     height: 10rem;
+}
+
+.primary-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2.5fr .1fr;
+    margin-top: 3.8rem;
+    margin-left: 3.8rem;
+    margin-right: 3.8rem;
+    margin-bottom: 3.8rem;
+    display: none;
 }
 
 .calendar-container {
@@ -36,32 +50,47 @@ main {
     padding: 5rem 3rem;
 }
 .new-items-box {
-    display: flex;
-    justify-content: center;
-    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4.9fr .1fr;
+    margin-top: 3.8rem;
+    margin-left: 3.8rem;
+    margin-right: 3.8rem;
+    margin-bottom: 3.8rem;
+    height: 100%;
+    /* display: none; */
 }
+
 label {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    padding-top: 1rem;
-}
-
-button {
-    border: none;
-    border-radius: .3rem;
-    padding: .5rem;
-    margin-top: 5rem;
-}
-
-span {
-    padding-right: 1rem;
+    padding-top: 2.2rem;
+    padding-bottom: .3rem;
     font-size: 1.5rem;
 }
 
-input {
-    padding: .3rem;
+button {
+    grid-column: 1;
+    grid-row: 3;
     border: none;
+    border-radius: .3rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+    width: 21rem;    
+}
+
+span {
+    padding-right: 3rem;
+    font-size: 2rem;
+}
+
+input {
+    width: 21rem;
+    padding: 1rem;
+    border: none;
+    font-size: 1.5rem;
+}
 
 .days {
     height: 3rem;
@@ -97,9 +126,11 @@ input {
     background-color: rgb(235, 235, 235);
 }
 
-
 .time-and-date h3 {
-    font-size: 1.8rem;
-    padding: 0rem 1rem;
+    font-size: 2.2rem;
+    padding: 0rem 2rem;
+}
+.todo-input-field {
+    /* display: none; */
 }
 

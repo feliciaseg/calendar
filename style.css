@@ -25,12 +25,14 @@ main {
     width: calc(100% - 20rem);
     height: 100%;
 }
+
 h4 {
     font-size: 2.2rem;
 }
 
-.remove-me {
-    height: 10rem;
+.time-and-date h3 {
+    font-size: 2.2rem;
+    padding: 0rem 2rem;
 }
 
 .primary-content {
@@ -44,11 +46,12 @@ h4 {
     display: none;
 }
 
-.calendar-container {
-    width: 100%;
-    height: 100%;
-    padding: 5rem 3rem;
+/* ---- TODO INPUT FIELD ---- */
+
+.todo-input-field {
+    /* display: none; */
 }
+
 .new-items-box {
     display: grid;
     grid-template-columns: 1fr;
@@ -92,6 +95,48 @@ input {
     font-size: 1.5rem;
 }
 
+/* ---- CALENDAR ---- */
+
+.calendar-container {
+    width: 100%;
+    height: 100%;
+    padding: 3rem;
+}
+
+/* MONTH PICKER */
+
+.month-container {
+    height: 4rem;
+    width: 100%;
+    border: 0.1rem solid darkgrey;
+}
+
+.month-container p {
+    font-size: 2rem;
+}
+
+.month-container span {
+    font-size: 2rem;
+    padding: 0;
+}
+
+.month-button {
+    background-color: white;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+}
+
+.previous-button {
+    border-right: 0.1rem solid darkgrey;
+}
+
+.next-button {
+    border-left: 0.1rem solid darkgrey;
+}
+
+/* CALENDAR */
+
 .days {
     height: 3rem;
     font-size: 1.1rem;
@@ -101,22 +146,42 @@ input {
 
 .calendar {
     width: 100%;
-    height: calc(100% - 13rem);
+    border-top: 1px solid darkgray;
+    border-left: 1px solid darkgray;
+    height: calc(100% - 7rem);
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
 }
 
 .calendar-div {
-    border: 0.1rem solid darkgray;
+    display: grid;
+    padding: 0.5rem;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
     background-color: white;
+    grid-template-areas: 
+    ". date"
+    ". ."
+    "holiday holiday"
+    ;
 }
 
-.calendar-div p {
+.date-number {
+    height: fit-content;
+    justify-self: right;
     font-weight: 900;
-    text-align: right;
-    margin: 0.8rem;
+    margin: 0;
     font-size: 1.5rem;
+    grid-area: date;
 }
+
+.holiday {
+    align-self: end;
+    margin: 0;
+    grid-area: holiday;
+    font-size: 0.8rem;
+}
+
 
 .filler-div p {
     color: rgb(177, 177, 177)!important;
@@ -125,12 +190,3 @@ input {
 .weekend-div {
     background-color: rgb(235, 235, 235);
 }
-
-.time-and-date h3 {
-    font-size: 2.2rem;
-    padding: 0rem 2rem;
-}
-.todo-input-field {
-    /* display: none; */
-}
-

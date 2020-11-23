@@ -12,11 +12,7 @@ aside {
 
 main {
     width: 100%;
-    height: calc(100% - 20rem);
-}
-
-.remove-me {
-    height: 5rem;
+    height: calc(100% - 10rem);
 }
 
 .calendar {

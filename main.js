@@ -1,14 +1,18 @@
-window.addEventListener ("load", main)
-
-function main() {
-    currentTime();
-    currentDate();
-    
-}
-
+/** Gets the current date */
 let date = new Date();
 
-//Funktionen läggs till eftersom t.ex 07:03 visas som 7:3, därför behöver vi lägga till en 0:a
+/*window.addEventListener ("load", main)*/
+
+/** Functions to run on window load */
+function main() {
+    currentTime();
+    currentDate();   
+}
+
+/**
+ * Adds a 0 to single digit values
+ * @param {Number} timevalue 
+ */
 function addZero(timevalue) {
     if (timevalue < 10){
         timevalue = "0" + timevalue;
@@ -16,20 +20,21 @@ function addZero(timevalue) {
     return timevalue;
 }
 
+/** Sets the current time */
 function currentTime(){
-    
     let hours = addZero(date.getHours());
     let minutes = addZero(date.getMinutes());
     let time = hours + ":" + minutes
     
-    //Visa i HTML dokumentet
+    // Visa i HTML dokumentet
     let showTime = document.getElementById("showTime")
     showTime.innerHTML = time;
 }
-setInterval (currentTime, 1000) 
 
+/** Updates the time each second */
+setInterval(currentTime, 1000) 
 
-
+/** Sets the current date */
 function currentDate(){
     
     // Veckodagen

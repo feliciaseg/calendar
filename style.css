@@ -28,6 +28,7 @@ main {
 
 h4 {
     font-size: 2.2rem;
+    margin: 0;
 }
 
 .time-and-date h3 {
@@ -38,29 +39,41 @@ h4 {
 .primary-content {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2.5fr .1fr;
+    grid-template-rows: 1fr 1fr .5fr;
     margin-top: 3.8rem;
     margin-left: 3.8rem;
     margin-right: 3.8rem;
     margin-bottom: 3.8rem;
-    display: none;
+    height: 100%;
+    display: none;   
+}
+
+.button-primary button {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: end;
+    align-self: end;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+    width: 100%;     
 }
 
 /* ---- TODO INPUT FIELD ---- */
 
 .todo-input-field {
+    
     /* display: none; */
 }
 
 .new-items-box {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 4.9fr .1fr;
-    margin-top: 3.8rem;
-    margin-left: 3.8rem;
-    margin-right: 3.8rem;
-    margin-bottom: 3.8rem;
-    height: 100%;
+    grid-template-rows: .5fr 3fr 1fr;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    height: 100vh; 
     /* display: none; */
 }
 
@@ -73,14 +86,18 @@ label {
     font-size: 1.5rem;
 }
 
-button {
+.button-box button {
     grid-column: 1;
     grid-row: 3;
-    border: none;
-    border-radius: .3rem;
     padding: 0.5rem 1.5rem;
     font-size: 1.5rem;
-    width: 21rem;    
+    width: 100%; 
+    max-width: 20rem;   
+}
+
+button {
+    border: none;
+    border-radius: .3rem;   
 }
 
 span {
@@ -89,7 +106,7 @@ span {
 }
 
 input {
-    width: 21rem;
+    width: 100%;
     padding: 1rem;
     border: none;
     font-size: 1.5rem;
@@ -181,7 +198,6 @@ input {
     grid-area: holiday;
     font-size: 0.8rem;
 }
-
 
 .filler-div p {
     color: rgb(177, 177, 177)!important;

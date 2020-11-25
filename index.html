@@ -16,7 +16,7 @@
     <link rel = "stylesheet" href="./mobile.css" media="screen and (max-width: 480px)">
     <link rel= "stylesheet" href="./reusable-classes.css">
 
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
     <script src="calendar.js"></script>
     <script defer src="to-do.js"></script>
   
@@ -33,19 +33,19 @@
           </div>
 
           <div class= "todo-container"> 
-            <div id= "todos"></div>
-            <!-- Lägg knappen utan för diven -->
-            
+            <div id= "todos">
+           
+            </div>
 
-            <button id="openNewTask" class="primary-background"> Add item</button>
-          </div>
-        
+            <div class="button-primary">
+               <button id="openNewTask" class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+            </div>
           </div>
   
         <div class="todo-input-field">
           <div class="new-items-box none" id="newTaskDiv">
-            <form class="flex column justify-center" id="form">
-                <h3>New task</h3>
+             <h4>New task</h4>
+                <div id="form" class="input-form">
                     <label for="datepicker">Description</label> 
                     <input type="text" name="datepicker" id="description" maxlength="35">
 
@@ -55,13 +55,15 @@
                     <label for="end">Time</label>
                     <input type="time"  name="appt" id="timePicked" required>
 
-                    <button class="flex text-left primary-background align-center" type="add" id="addNewItem"><span>&#43;</span>Add new item</button>
-                  </form>
                   </div>
+           
+                  <div class="button-box">
+                    <button id= "addNewItem" class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+                  </div> 
             
-            
-          </div>
-       
+             </div>
+           </div>
+
   
     </aside>
 
@@ -69,7 +71,20 @@
     <!-- KALENDER VIEW -->
    <main> 
         <div class="calendar-container">
-            <div class="remove-me"> November 2020 typ</div>
+            <div class="month-container flex justify-space-between align-center">
+                <button id="month-button-previous" class="month-button previous-button flex center">
+                    <span class="material-icons">
+                        arrow_back
+                    </span>
+                </button>
+                <p id="month-and-year" class="bold"> <!-- code injected from calendar.js --> </p>
+                <button id="month-button-next" class="month-button next-button flex center">
+                    <span class="material-icons">
+                        arrow_forward
+                    </span>
+                </button>
+            </div>
+
             <div class="days grid text-right">
                 <p>Mon</p>
                 <p>Tue</p>
@@ -80,7 +95,7 @@
                 <p>Sun</p>
             </div>
             <div id="calendar" class="calendar grid"></div>
-            <!-- Content inserted from main.js -->
+            <!-- code inserted from calendar.js -->
             </div>
         </div> 
    </main>

@@ -16,6 +16,11 @@
     flex-direction: row;
 }
 
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
 .justify-center {
     justify-content: center;
 }
@@ -82,5 +87,5 @@
 }
 
 .none {
-    display:none;
+    display: none;
 }

@@ -25,11 +25,15 @@ h4 {
     margin-bottom: 1rem;
 }
 
-button {
+.button-primary button {
     width: 15rem;
     font-size: 1rem;
 }
 
+.button-box button {
+    width: 15rem;
+    font-size: 1rem;
+}
 .primary-content {
     grid-template-columns: 1fr;
     grid-template-rows: 3fr 2.5fr .1fr;
@@ -45,12 +49,17 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .new-items-box {
     grid-template-columns: 1fr;
     grid-template-rows: .1fr 4fr .1fr;
-    width: 15rem;  
+    /* width: 15rem; */
+    height: 100vh; 
+    padding-top: 3rem;
+    padding-bottom: 3rem; 
 }
 
 .input-form {

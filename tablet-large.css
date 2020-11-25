@@ -15,6 +15,17 @@ main {
     height: calc(100% - 10rem);
 }
 
+h4 {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;       
+}
+
+label {
+    padding-top: 0.5rem;
+}
+
+
 .calendar {
     width: 100%;
     height: calc(100% - 8rem);
@@ -24,10 +35,11 @@ main {
 
 .primary-content {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 2fr .5fr; 
+        grid-template-rows: 1.5fr .5fr; 
         gap: 1.5rem;
         margin-top: 1rem;
-        display: none;
+        
+        /* display: none; */
 }
 
 .time-and-date {
@@ -64,17 +76,5 @@ main {
     grid-row: 2; 
 }
 
-h4 {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 0;       
-}
 
-label {
-    padding-top: 0.5rem;
-}
-
-button {
-    width: 19rem;
-}
 

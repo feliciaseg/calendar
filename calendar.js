@@ -5,7 +5,7 @@ let month = todaysDate.getMonth() + 1;
 let year = todaysDate.getFullYear();
 
 /** Functions to run on window load */
-async function calendarMain() {
+function calendarMain() {
     getSvenskaDagarApi();
     addEventListeners();
     setYearInterval();

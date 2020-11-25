@@ -1,3 +1,7 @@
+
+/** Sets function to run on window load */
+window.onload = todoMain;
+
 /** Functions to run on window load */
 function todoMain() {
     addTodoEventListeners();
@@ -76,7 +80,8 @@ function emptyTodoContainer(){
     while (containerChildren.length > 0) {
         containerChildren[0].remove()
     }
-
+    
+    
 }
 
 /** Shows all saved tasks/todos */
@@ -91,11 +96,21 @@ function showTodos() {
         const pDate = document.createElement("p");
         const pTime = document.createElement("p");
         const pDescription = document.createElement ("p");
+
+        const removeButton = document.createElement("span"); 
+        removeButton.classList.add("material-icons");
+        removeButton.innerHTML = 'close';
+
+        const editButton = document.createElement("span");
+        editButton.classList.add("material-icons");
+        editButton.innerHTML = 'edit';
     
          // Append elements
         todoContainer.append(div);
         div.append(pDate);
         div.append(pTime);
+        div.append(removeButton);
+        div.append(editButton);
         div.append(pDescription);
     
          // Text in elements

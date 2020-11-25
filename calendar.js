@@ -7,17 +7,25 @@ let year = todaysDate.getFullYear();
 /** Functions to run on window load */
 function calendarMain() {
     getSvenskaDagarApi();
-    addEventListeners();
+    addCalendarEventListeners();
     setYearInterval();
 }
 
 /** Adds event listeners */
-function addEventListeners() {
+function addCalendarEventListeners() {
     const previousMonth = document.getElementById("month-button-previous");
     const nextMonth = document.getElementById("month-button-next");
 
-    previousMonth.addEventListener("click", () => changeMonth(previousMonth));
-    nextMonth.addEventListener("click", () => changeMonth(nextMonth));
+    //previousMonth.addEventListener("click", () => changeMonth(previousMonth));
+    previousMonth.addEventListener("click", function() {
+        changeMonth(previousMonth)
+        createNotification();
+    })
+    nextMonth.addEventListener("click", function() {
+        changeMonth(nextMonth)
+        createNotification();
+    })
+    //nextMonth.addEventListener("click", () => changeMonth(nextMonth));
 }
 
 /** Gets and forwards the result of fetching Svenska Dagar Api */

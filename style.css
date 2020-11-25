@@ -167,12 +167,12 @@ input {
 
 .calendar-div {
     display: grid;
-    padding: 0.5rem;
+    padding: 0.8rem;
     border-right: 1px solid darkgray;
     border-bottom: 1px solid darkgray;
     background-color: white;
     grid-template-areas: 
-    ". date"
+    "notification date"
     ". ."
     "holiday holiday"
     ;
@@ -192,6 +192,18 @@ input {
     margin: 0;
     grid-area: holiday;
     font-size: 0.8rem;
+}
+
+.notification {
+    width: fit-content;
+    height: fit-content;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100%;
+    grid-area: notification;
+}
+
+.notification p {
+    margin: 0;
 }
 
 .filler-div p {

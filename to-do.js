@@ -1,11 +1,11 @@
 /** Functions to run on window load */
 function todoMain() {
-    addEventListeners();
+    addTodoEventListeners();
     showTodos();
 }
 
 /** Adds event listeners */
-function addEventListeners() {
+function addTodoEventListeners() {
     const btnOpenNewTask = document.getElementById("openNewTask");
     btnOpenNewTask.addEventListener("click", openNewDiv);
 
@@ -82,6 +82,8 @@ function showTodos() {
          // vad som ska stå i elementen
         pTime.innerHTML = (savedTasks[task].time);
         pDescription.innerHTML = (savedTasks[task].description);  
+        
+        createNotification();
     } 
   
 } 

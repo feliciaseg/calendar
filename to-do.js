@@ -71,17 +71,26 @@ function showTodos() {
      
      for (task in savedTasks) {
         const div = document.createElement("div");
+        const pDate = document.createElement("p");
         const pTime = document.createElement("p");
         const pDescription = document.createElement ("p");
     
-         // appendar element till varandra
+         // Append elements
         todoContainer.append(div);
+        div.append(pDate);
         div.append(pTime);
         div.append(pDescription);
     
-         // vad som ska stå i elementen
+         // Text in elements
+        pDate.innerHTML = (savedTasks[task].date);
         pTime.innerHTML = (savedTasks[task].time);
         pDescription.innerHTML = (savedTasks[task].description);  
+        
+        //Styling
+        pDate.classList.add("bold", "p-todo");
+        pTime.classList.add("semi-bold", "p-todo");
+        pDescription.classList.add("p-todo");
+        div.classList.add("div-todo");
         
         createNotification();
     } 

@@ -58,6 +58,15 @@ h4 {
     width: 100%;     
 }
 
+.p-todo{
+    font-size:1.5rem;
+    margin: 0.5rem;
+}
+
+.div-todo{
+    padding: 0.5rem 2rem;
+}
+
 /* ---- TODO INPUT FIELD ---- */
 
 .new-items-box {
@@ -213,3 +222,4 @@ input {
 .weekend-div {
     background-color: rgb(235, 235, 235);
 }
+

@@ -34,16 +34,21 @@ function addNewItem(event){
         time: document.getElementById ("timePicked").value,
         description: document.getElementById("description").value
     }
-    tasks.push(task);
-    localStorage.setItem("savedTasks", JSON.stringify(tasks));
-    saveToLS();
+    // tasks.push(task);
+    
+    updateLS(task);
     openNewDiv();
 }
 
-/** Saves the input to Local Storage */
-function saveToLS() {
+/** Updates local storage */
+function updateLS(task) {
+    if (localStorage.getItem('savedTasks')) {
+    tasks = JSON.parse(localStorage.getItem('savedTasks'));
+    }
+    tasks.push(task);
     localStorage.setItem("savedTasks", JSON.stringify(tasks));
     showTodos();
+    
 }
 
 /** Empties the todo container*/

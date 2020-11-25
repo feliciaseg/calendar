@@ -18,6 +18,7 @@
 
     <script defer src="main.js"></script>
     <script src="calendar.js"></script>
+    <script defer src="to-do.js"></script>
   
 </head>
 <body class="flex">
@@ -25,41 +26,44 @@
     <!-- Gråa Diven Todolist -->
                      
     <aside class= "aside light-grey-bg"> 
-        <div class="primary-content">
+        <div class="primary-content" id = "primaryContentDiv">
           <div class= "time-and-date"> 
               <h3 class="bold" id="showTime"> <!-- Code injected by JS --> </h3>
               <h3 class= "bold" id= "showDate"> <!-- Code injected by JS -->  </h3>
           </div>
 
-            <div> To- do listan
+          <div class= "todo-container"> 
+            <div id= "todos">
+           
             </div>
+
             <div class="button-primary">
-                <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+               <button id="openNewTask" class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
             </div>
-        </div>
+          </div>
   
         <div class="todo-input-field">
-          
-           <div class="new-items-box">
+          <div class="new-items-box none" id="newTaskDiv">
              <h4>New task</h4>
-                <div class="input-form">
-
+                <div id="form" class="input-form">
                     <label for="datepicker">Description</label> 
-                    <input type="text" name="datepicker" maxlength="35">
+                    <input type="text" name="datepicker" id="description" maxlength="35">
 
                     <label for="start">Date</label>
-                    <input type="date" name="bday" required pattern="\d{4}-\d{2}-\d{2}">
+                    <input type="date" name="bday" id="datePicked" required pattern="\d{4}-\d{2}-\d{2}">
 
                     <label for="end">Time</label>
-                    <input type="time" id="appt" name="appt"min="09:00" max="18:00" required>
-                </div>
+                    <input type="time"  name="appt" id="timePicked" required>
 
-                <div class="button-box">
-                    <button class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
-                </div> 
-          </div>       
-       </div>
-        
+                  </div>
+           
+                  <div class="button-box">
+                    <button id= "addNewItem" class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+                  </div> 
+            
+             </div>
+           </div>
+
   
     </aside>
 

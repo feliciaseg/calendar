@@ -4,10 +4,6 @@ function todoMain() {
     showTodos();
 }
 
-// Hämta från local storage + update ....
-
-// hämta upp 
-
 /** Adds event listeners */
 function addEventListeners() {
     const btnOpenNewTask = document.getElementById("openNewTask");

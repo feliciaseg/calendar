@@ -1,7 +1,8 @@
 window.addEventListener("load", main)
 
 function main() {
-    timeDateMain();
     calendarMain();
+    timeDateMain();
     todoMain();
+    notificationMain();
 }

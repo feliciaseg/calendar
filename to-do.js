@@ -26,18 +26,35 @@ function openNewDiv(){
 
 /** Saves input value from the form */
 let tasks = []
+
 function addNewItem(event){
-    event.preventDefault();
-    
-    let task = {
-        date: document.getElementById("datePicked").value,
-        time: document.getElementById ("timePicked").value,
-        description: document.getElementById("description").value
+    const inputFields = document.querySelectorAll("input")
+
+    // Counter for the amount of filled inputfields
+    let correctInput = 0;
+
+    // Sets a red frame around the empty inputfields
+    for (i = 0; i < inputFields.length; i++) {
+        if (!inputFields[i].value) {
+            inputFields[i].style.border = "0.1rem #FF716E solid"
+        }
+        else {
+            inputFields[i].style.border = "none"
+            correctInput += 1;
+        }
     }
-    // tasks.push(task);
-    
-    updateLS(task);
-    openNewDiv();
+
+    // Create input if all inputfields are filled
+    if (correctInput === inputFields.length) {
+        let task = {
+            date: document.getElementById("datePicked").value,
+            time: document.getElementById ("timePicked").value,
+            description: document.getElementById("description").value
+        }
+        updateLS(task);
+        openNewDiv();
+    }
+    event.preventDefault();
 }
 
 /** Updates local storage */

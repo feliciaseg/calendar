@@ -1,32 +1,40 @@
+/** Functions to run on window load */
 function notificationMain() {
-    setTimeout( function() {
-        createNotification();
-    }, 200)
+    createNotification();
 }
 
+/** Created notification in calendar */
 function createNotification() {
-    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
-    const calendarDivs = document.getElementsByClassName("calendar-div")
-    let counter = 0;
-
-    for (i = 0; i < calendarDivs.length; i++) {
-        for (task in savedTasks) {
-            if (savedTasks[task].date === calendarDivs[i].id) {
-                for (child in calendarDivs[i].children) {
-                    if (calendarDivs[i].lastElementChild.classList.contains("notification")) {
-                        calendarDivs[i].lastElementChild.remove()
+    
+    // Gives calender time to finish loading before initiation
+    setTimeout( function() {
+        const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+        const calendarDivs = document.getElementsByClassName("calendar-div")
+    
+        // Counts the amount of todos which occur on the same day
+        let counter = 0;
+    
+        for (i = 0; i < calendarDivs.length; i++) {
+            for (task in savedTasks) {
+                if (savedTasks[task].date === calendarDivs[i].id) {
+    
+                    // Removes previous notification before creating a new one
+                    for (child in calendarDivs[i].children) {
+                        if (calendarDivs[i].lastElementChild.classList.contains("notification")) {
+                            calendarDivs[i].lastElementChild.remove()
+                        }
                     }
+                    const div = document.createElement("div")
+                    const p = document.createElement("p")
+    
+                    counter += 1
+                    p.innerHTML = counter
+    
+                    div.append(p);
+                    calendarDivs[i].append(div)
+                    div.setAttribute("class", "primary-background notification")
                 }
-                counter += 1
-
-                console.log(savedTasks[task].date + " " + calendarDivs[i].id)
-                const div = document.createElement("div")
-                const p = document.createElement("p")
-                p.innerHTML = counter
-                div.append(p);
-                calendarDivs[i].append(div)
-                div.setAttribute("class", "primary-background notification")
             }
         }
-    }
+    }, 200)
 }

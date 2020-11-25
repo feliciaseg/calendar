@@ -1,7 +1,3 @@
-
-/** Sets function to run on window load */
-window.onload = todoMain;
-
 /** Functions to run on window load */
 function todoMain() {
     addEventListeners();

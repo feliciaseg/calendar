@@ -108,7 +108,7 @@ function createCalendarDays(currentMonthsData) {
             
             div.classList.add("calendar-div");
             div.setAttribute("id", days[day].datum)
-            div.addEventListener("click", (event) => filterTodos(div, event))
+            div.addEventListener("click", () => filterTodos(div))
 
             calendar.append(div)
             div.append(date)
@@ -340,23 +340,16 @@ function showHolidays(day, days, div) {
     }
 }
 
-function filterTodos(div, event) {
+function filterTodos(div) {
     const divId = div.id;
     const allTodoDates = document.getElementsByClassName("date")
 
-    if (event.target.classList.contains("calendar-div") || event.target.parentElement.classList.contains("calendar-div")) {
-        if (div.classList.contains("is-attached")) {
-            for (i = 0; i < allTodoDates.length; i++) {
-                if (allTodoDates[i].innerHTML !== divId) {
-                    allTodoDates[i].parentElement.classList.add("none")
-                }
-                else {
-                    allTodoDates[i].parentElement.classList.remove("none")
-                }
+    if (div.classList.contains("is-attached")) {
+        for (i = 0; i < allTodoDates.length; i++) {
+            if (allTodoDates[i].innerHTML !== divId) {
+                allTodoDates[i].parentElement.classList.add("none")
             }
-        }
-        else {
-            for (i = 0; i < allTodoDates.length; i++) {
+            else {
                 allTodoDates[i].parentElement.classList.remove("none")
             }
         }

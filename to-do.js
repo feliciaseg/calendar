@@ -15,7 +15,9 @@ function addTodoEventListeners() {
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
+   
 }
+
 
 
 /** Displays or hide the divs*/

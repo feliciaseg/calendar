@@ -340,12 +340,18 @@ function showHolidays(day, days, div) {
     }
 }
 
+/**
+ * Filters the todos based on which calendar div is clicked
+ * @param {Element} div 
+ */
 function filterTodos(div) {
     const divId = div.id;
     const allTodoDates = document.getElementsByClassName("date")
 
+    /* Filter todos if clicked div has todo attached to it */
     if (div.classList.contains("is-attached")) {
         for (i = 0; i < allTodoDates.length; i++) {
+            /* Hide the todos whose dates are not the same as div id (the div date) */
             if (allTodoDates[i].innerHTML !== divId) {
                 allTodoDates[i].parentElement.classList.add("none")
             }

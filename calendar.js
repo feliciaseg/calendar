@@ -157,6 +157,7 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
                     date.classList.add("date-number")
                     date.style.color = "gray"
                     div.classList.add("calendar-div", "filler-div");
+                    div.addEventListener("click", () => filterTodos(div))
                     
                     div.append(date)
                     calendar.append(div)
@@ -191,6 +192,7 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
             date.innerHTML = dateForDay;
             date.classList.add("date-number")
             div.classList.add("calendar-div", "filler-div");
+            div.addEventListener("click", () => filterTodos(div))
             div.append(date);
             calendar.append(div)
 

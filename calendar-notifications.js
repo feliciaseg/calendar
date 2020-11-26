@@ -32,6 +32,7 @@ function createNotification() {
                     div.append(p);
                     calendarDivs[i].append(div)
                     div.setAttribute("class", "primary-background notification")
+                    calendarDivs[i].classList.add("is-attached")
                 }
             }
         }

@@ -14,6 +14,7 @@ function createNotification() {
         for (i = 0; i < calendarDivs.length; i++) {
             // Counts the amount of todos which occur on the same day
             let counter = 0;
+            calendarDivs[i].classList.remove("is-attached")
 
             for (task in savedTasks) {
                 if (savedTasks[task].date === calendarDivs[i].id) {
@@ -32,6 +33,7 @@ function createNotification() {
                     div.append(p);
                     calendarDivs[i].append(div)
                     div.setAttribute("class", "primary-background notification")
+                    calendarDivs[i].classList.add("is-attached")
                 }
             }
         }

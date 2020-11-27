@@ -6,5 +6,4 @@ function main() {
     calendarMain();
     timeDateMain();
     todoMain();
-    notificationMain();
 }

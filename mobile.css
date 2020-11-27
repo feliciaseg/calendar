@@ -1,8 +1,5 @@
 /* MOBILE */
 /* max-width: 600px */
-body{
-    margin: 0rem 0rem;
-}
 
 main {
     display: none;
@@ -30,6 +27,57 @@ aside {
     ;
 }
 
+.time-and-date h3 {
+    font-size: 1.6rem;
+}
+
+.time-and-date h3:nth-child(2) {
+    margin-top: 0.5rem;
+}
+
 .todo-container {
-    margin: 2rem 0;
+    margin: 1rem 0;
+}
+
+.date, .time {
+    font-size: 1rem;
+}
+
+.description {
+    margin-top: 0rem;
+    font-size: 1.3rem;
+}
+
+.button-primary button, .button-box button {
+    font-size: 1.2rem;
+}
+
+.new-items-box {
+    display: grid;
+    padding: 3rem;
+    column-gap: 5rem;
+    height: 100%; 
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    grid-template-areas: 
+    "h4"
+    "input"
+    "input-button"
+    ;
+}
+
+.input-form {
+    padding: 2rem 0;
+    display: unset;
+    height: 100%;
+}
+
+.new-items-box h4 {
+    font-size: 1.6rem;
+    width: 100%;
+}
+
+input {
+    font-size: 1.3rem;
 }

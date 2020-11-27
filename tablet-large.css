@@ -28,7 +28,7 @@ label {
 }
 
 .primary-content {
-    column-gap: 3rem;
+    column-gap: 5rem;
     grid-template-columns: 1fr 1.5fr;
     grid-template-areas: 
     "time-n-date todo-container"
@@ -40,14 +40,14 @@ label {
     margin: 0;
 }
 
-.button-primary {
+.button-primary, .button-box {
     align-self: end;
 }
 
 .new-items-box {
     display: grid;
     padding: 3rem;
-    column-gap: 3rem;
+    column-gap: 5rem;
     height: 100%; 
     grid-template-rows: 1fr auto;
     grid-template-columns: 1fr 1.5fr;
@@ -58,19 +58,19 @@ label {
 }
 
 .input-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 0;
+    height: 100%;
 }
 
 label {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 input {
-    height: 1.2rem;
-}
-
-.button-box {
-    align-self: end;
+    padding: 0.3rem 1rem;
 }
 
 

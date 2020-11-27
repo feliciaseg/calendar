@@ -72,7 +72,7 @@ aside {
 
 .div-todo {
     display: grid;
-    margin: 0.8rem 0;
+    margin: 0 0 1rem 0;
     grid-template-columns: auto 1fr auto auto;
     grid-template-areas: 
     "date time edit delete"
@@ -133,12 +133,14 @@ aside {
 
 .todo-input-field {
     height: 100%;
+    width: 100%;
 }
 
 .new-items-box {
     display: grid;
     padding: 3rem;
-    height: 100%; 
+    height: 100%;
+    width: 100%;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 
     "h4"
@@ -172,10 +174,11 @@ label {
     grid-area: input-button; 
 }
 
-.button-box button {
+.button-box button, .primary-button button {
     padding: 0.5rem 1.5rem;
     font-size: 1.5rem;
     width: 100%;
+    cursor: pointer; 
 }
 
 button {

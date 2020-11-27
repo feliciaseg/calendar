@@ -14,7 +14,7 @@ function addTodoEventListeners() {
     btnOpenNewTask.addEventListener("click", openNewDiv);
 
     const btnAddItem = document.getElementById("addNewItem");
-    btnAddItem.addEventListener("click", () => addNewItem)
+    btnAddItem.addEventListener("click", addNewItem)
 }
 
 

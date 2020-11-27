@@ -15,6 +15,7 @@ function addEventListeners() {
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
+    // todo.addEventListeners("click",removeTodo);
 }
 
 
@@ -77,6 +78,9 @@ function showTodos() {
         const removeButton = document.createElement("span"); 
         removeButton.classList.add("material-icons");
         removeButton.innerHTML = 'close';
+        removeButton.addEventListener("click", function() {
+        removeTodo(task)
+        })
 
         const editButton = document.createElement("span");
         editButton.classList.add("material-icons");
@@ -91,8 +95,15 @@ function showTodos() {
     
          // vad som ska stå i elementen
         pTime.innerHTML = (savedTasks[task].time);
-        pDescription.innerHTML = (savedTasks[task].description);  
-    } 
-  
+        pDescription.innerHTML = (savedTasks[task].description);
+    }
 } 
 
+
+  function removeTodo(task){
+    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+    savedTasks.splice(task, 1)
+    localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+    showTodos();
+    createNotification();
+}

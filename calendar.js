@@ -16,16 +16,12 @@ function addCalendarEventListeners() {
     const previousMonth = document.getElementById("month-button-previous");
     const nextMonth = document.getElementById("month-button-next");
 
-    //previousMonth.addEventListener("click", () => changeMonth(previousMonth));
     previousMonth.addEventListener("click", function() {
         changeMonth(previousMonth)
-        createNotification();
     })
     nextMonth.addEventListener("click", function() {
         changeMonth(nextMonth)
-        createNotification();
     })
-    //nextMonth.addEventListener("click", () => changeMonth(nextMonth));
 }
 
 /** Gets and forwards the result of fetching Svenska Dagar Api */
@@ -117,6 +113,7 @@ function createCalendarDays(currentMonthsData) {
             showHolidays(day, days, div);
         }
         presentCurrentMonthAndYear(currentMonthsData);
+        createNotification();
     }
 }
 

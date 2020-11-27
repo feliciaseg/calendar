@@ -96,6 +96,7 @@ function showTodos() {
      for (task in savedTasks) {
         const div = document.createElement("div");
         const pDate = document.createElement("p");
+        pDate.classList.add("date")
         const pTime = document.createElement("p");
         const pDescription = document.createElement ("p");
 

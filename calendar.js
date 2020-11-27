@@ -7,17 +7,21 @@ let year = todaysDate.getFullYear();
 /** Functions to run on window load */
 function calendarMain() {
     getSvenskaDagarApi();
-    addEventListeners();
+    addCalendarEventListeners();
     setYearInterval();
 }
 
 /** Adds event listeners */
-function addEventListeners() {
+function addCalendarEventListeners() {
     const previousMonth = document.getElementById("month-button-previous");
     const nextMonth = document.getElementById("month-button-next");
 
-    previousMonth.addEventListener("click", () => changeMonth(previousMonth));
-    nextMonth.addEventListener("click", () => changeMonth(nextMonth));
+    previousMonth.addEventListener("click", function() {
+        changeMonth(previousMonth)
+    })
+    nextMonth.addEventListener("click", function() {
+        changeMonth(nextMonth)
+    })
 }
 
 /** Gets and forwards the result of fetching Svenska Dagar Api */
@@ -100,6 +104,7 @@ function createCalendarDays(currentMonthsData) {
             
             div.classList.add("calendar-div");
             div.setAttribute("id", days[day].datum)
+            div.addEventListener("click", () => filterTodos(div))
 
             calendar.append(div)
             div.append(date)
@@ -108,6 +113,7 @@ function createCalendarDays(currentMonthsData) {
             showHolidays(day, days, div);
         }
         presentCurrentMonthAndYear(currentMonthsData);
+        createNotification();
     }
 }
 
@@ -148,6 +154,7 @@ function addFillerDivsBeforeCalendarDays(currentMonthsData, previousMonthsData) 
                     date.classList.add("date-number")
                     date.style.color = "gray"
                     div.classList.add("calendar-div", "filler-div");
+                    div.addEventListener("click", () => filterTodos(div))
                     
                     div.append(date)
                     calendar.append(div)
@@ -182,6 +189,7 @@ function addFillerDivsAfterCalendarDays(nextMonthsData) {
             date.innerHTML = dateForDay;
             date.classList.add("date-number")
             div.classList.add("calendar-div", "filler-div");
+            div.addEventListener("click", () => filterTodos(div))
             div.append(date);
             calendar.append(div)
 
@@ -328,5 +336,32 @@ function showHolidays(day, days, div) {
         holiday.classList.add("holiday")
 
         div.append(holiday)
+    }
+}
+
+/**
+ * Filters the todos based on which calendar div is clicked
+ * @param {Element} div 
+ */
+function filterTodos(div) {
+    const divId = div.id;
+    const allTodoDates = document.getElementsByClassName("date")
+
+    /* Filter todos if clicked div has todo attached to it */
+    if (div.classList.contains("is-attached")) {
+        for (i = 0; i < allTodoDates.length; i++) {
+            /* Hide the todos whose dates are not the same as div id (the div date) */
+            if (allTodoDates[i].innerHTML !== divId) {
+                allTodoDates[i].parentElement.classList.add("none")
+            }
+            else {
+                allTodoDates[i].parentElement.classList.remove("none")
+            }
+        }
+    }
+    else {
+        for (i = 0; i < allTodoDates.length; i++) {
+            allTodoDates[i].parentElement.classList.remove("none")
+        }
     }
 }

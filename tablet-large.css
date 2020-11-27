@@ -61,7 +61,7 @@ label {
     grid-template-rows: 1fr .3;
     gap: 3rem;
     margin-top: 2rem;
-    /* display: none; */
+    
 }
 
 .input-form {

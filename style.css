@@ -58,6 +58,15 @@ h4 {
     width: 100%;     
 }
 
+.p-todo{
+    font-size:1.5rem;
+    margin: 0.5rem;
+}
+
+.div-todo{
+    padding: 0.5rem 2rem;
+}
+
 /* ---- TODO INPUT FIELD ---- */
 
 .new-items-box {
@@ -167,12 +176,12 @@ input {
 
 .calendar-div {
     display: grid;
-    padding: 0.5rem;
+    padding: 0.8rem;
     border-right: 1px solid darkgray;
     border-bottom: 1px solid darkgray;
     background-color: white;
     grid-template-areas: 
-    ". date"
+    "notification date"
     ". ."
     "holiday holiday"
     ;
@@ -194,6 +203,18 @@ input {
     font-size: 0.8rem;
 }
 
+.notification {
+    width: fit-content;
+    height: fit-content;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100%;
+    grid-area: notification;
+}
+
+.notification p {
+    margin: 0;
+}
+
 .filler-div p {
     color: rgb(177, 177, 177)!important;
 }
@@ -201,3 +222,4 @@ input {
 .weekend-div {
     background-color: rgb(235, 235, 235);
 }
+

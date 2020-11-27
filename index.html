@@ -18,6 +18,7 @@
 
     <script defer src="./main.js"></script>
     <script src="./calendar.js"></script>
+    <script src="./calendar-notifications.js"></script>
     <script src="./time-and-date.js"></script>
     <script defer src="./to-do.js"></script>
   
@@ -33,7 +34,7 @@
               <h3 class= "bold" id= "showDate"> <!-- Code injected by JS -->  </h3>
           </div>
 
-          <div class= "todo-container"> 
+          <div class= "todo-container" id="todo-container"> 
             <div id= "todos">
                 <div class="buttens">
                     <button></button>
@@ -56,10 +57,10 @@
                     <input type="text" name="datepicker" id="description" maxlength="35">
 
                     <label for="start">Date</label>
-                    <input type="date" name="bday" id="datePicked" required pattern="\d{4}-\d{2}-\d{2}">
+                    <input type="date" name="bday" id="datePicked" pattern="\d{4}-\d{2}-\d{2}">
 
                     <label for="end">Time</label>
-                    <input type="time"  name="appt" id="timePicked" required>
+                    <input type="time"  name="appt" id="timePicked">
 
                   </div>
            

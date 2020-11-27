@@ -1,5 +1,3 @@
-/** Gets the current date */
-let date = new Date();
 
 /** Functions to run on window load */
 function timeDateMain() {
@@ -20,6 +18,7 @@ function addZero(timevalue) {
 
 /** Sets the current time */
 function currentTime(){
+    let date = new Date();
     let hours = addZero(date.getHours());
     let minutes = addZero(date.getMinutes());
     let time = hours + ":" + minutes
@@ -32,8 +31,11 @@ function currentTime(){
 /** Updates the time each second */
 setInterval(currentTime, 1000) 
 
+
 /** Sets the current date */
 function currentDate(){
+    /** Gets the current date */
+    let date = new Date();
     
     // Veckodagen
     let NumberOfday = date.getDay();

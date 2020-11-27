@@ -4,12 +4,12 @@ window.onload = todoMain;
 
 /** Functions to run on window load */
 function todoMain() {
-    addEventListeners();
+    addTodoEventListeners();
     showTodos();
 }
 
 /** Adds event listeners */
-function addEventListeners() {
+function addTodoEventListeners() {
     const btnOpenNewTask = document.getElementById("openNewTask");
     btnOpenNewTask.addEventListener("click", openNewDiv);
 
@@ -31,24 +31,46 @@ function openNewDiv(){
 
 /** Saves input value from the form */
 let tasks = []
+
 function addNewItem(event){
+    const inputFields = document.querySelectorAll("input")
+
+    // Counter for the amount of filled inputfields
+    let correctInput = 0;
+
+    // Sets a red frame around the empty inputfields
+    for (i = 0; i < inputFields.length; i++) {
+        if (!inputFields[i].value) {
+            inputFields[i].style.border = "0.1rem #FF716E solid"
+        }
+        else {
+            inputFields[i].style.border = "none"
+            correctInput += 1;
+        }
+    }
+
+    // Create input if all inputfields are filled
+    if (correctInput === inputFields.length) {
+        let task = {
+            date: document.getElementById("datePicked").value,
+            time: document.getElementById ("timePicked").value,
+            description: document.getElementById("description").value
+        }
+        updateLS(task);
+        openNewDiv();
+    }
     event.preventDefault();
-    
-    let task = {
-        date: document.getElementById("datePicked").value,
-        time: document.getElementById ("timePicked").value,
-        description: document.getElementById("description").value
+}
+
+/** Updates local storage */
+function updateLS(task) {
+    if (localStorage.getItem('savedTasks')) {
+    tasks = JSON.parse(localStorage.getItem('savedTasks'));
     }
     tasks.push(task);
     localStorage.setItem("savedTasks", JSON.stringify(tasks));
-    saveToLS();
-    openNewDiv();
-}
-
-/** Saves the input to Local Storage */
-function saveToLS() {
-    localStorage.setItem("savedTasks", JSON.stringify(tasks));
     showTodos();
+    
 }
 
 /** Empties the todo container*/
@@ -72,6 +94,8 @@ function showTodos() {
      
      for (task in savedTasks) {
         const div = document.createElement("div");
+        const pDate = document.createElement("p");
+        pDate.classList.add("date")
         const pTime = document.createElement("p");
         const pDescription = document.createElement ("p");
 
@@ -86,17 +110,28 @@ function showTodos() {
         editButton.classList.add("material-icons");
         editButton.innerHTML = 'edit';
     
-         // appendar element till varandra
+         // Append elements
         todoContainer.append(div);
+        div.append(pDate);
         div.append(pTime);
         div.append(removeButton);
         div.append(editButton);
         div.append(pDescription);
     
-         // vad som ska stå i elementen
+         // Text in elements
+        pDate.innerHTML = (savedTasks[task].date);
         pTime.innerHTML = (savedTasks[task].time);
-        pDescription.innerHTML = (savedTasks[task].description);
-    }
+        pDescription.innerHTML = (savedTasks[task].description);  
+        
+        //Styling
+        pDate.classList.add("bold", "p-todo");
+        pTime.classList.add("semi-bold", "p-todo");
+        pDescription.classList.add("p-todo");
+        div.classList.add("div-todo");
+        
+        createNotification();
+    } 
+  
 } 
 
 

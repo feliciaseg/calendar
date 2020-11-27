@@ -44,6 +44,16 @@ h4 {
     grid-row: 3;
 }
 
+.p-todo{
+    font-size: 1.125rem;
+    margin: 0.5rem;
+}
+
+.div-todo{
+    padding: 0.5rem 0rem;
+}
+
+
 .todo-input-field {
     display: flex;
     flex-direction: column;

@@ -35,22 +35,19 @@
           </div>
 
           <div class= "todo-container" id="todo-container"> 
-            <div id= "todos">
-                <div class="buttens">
-                    <button></button>
-                    <button></button>
-                </div>
-           
-            </div>
-
-            <div class="button-primary">
-               <button id="openNewTask" class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+            <div class="todo-container-inner flex column grow" id="todos">
             </div>
           </div>
+          <div class="button-primary">
+               <button id="openNewTask" class="flex text-left primary-background align-center" type="add">
+                   <span class="material-icons">add</span>
+                   Add new item
+                </button>
+            </div>
         </div>
   
-        <div class="todo-input-field">
-          <div class="new-items-box none" id="newTaskDiv">
+        <div class="todo-input-field none" id="newTaskDiv">
+          <div class="new-items-box">
              <h4>New task</h4>
                 <div id="form" class="input-form">
                     <label for="datepicker">Description</label> 
@@ -65,7 +62,11 @@
                   </div>
            
                   <div class="button-box">
-                    <button id= "addNewItem" class="flex text-left primary-background align-center" type="add"><span>&#43;</span>Add new item</button>
+                    <button id= "addNewItem" class="flex primary-background align-center text-left" type="add">
+                        <span class="material-icons">add</span>
+                        Add new item
+                        <span>&nbsp;</span>
+                    </button>
                   </div> 
             
              </div>

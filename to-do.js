@@ -96,22 +96,24 @@ function showTodos() {
         const pDate = document.createElement("p");
         pDate.classList.add("date")
         const pTime = document.createElement("p");
+        pTime.classList.add("time")
         const pDescription = document.createElement ("p");
+        pDescription.classList.add("description")
 
         const removeButton = document.createElement("span"); 
-        removeButton.classList.add("material-icons");
+        removeButton.classList.add("material-icons", "remove");
         removeButton.innerHTML = 'close';
 
         const editButton = document.createElement("span");
-        editButton.classList.add("material-icons");
+        editButton.classList.add("material-icons", "edit");
         editButton.innerHTML = 'edit';
     
          // Append elements
         todoContainer.append(div);
-        div.append(pDate);
         div.append(pTime);
         div.append(removeButton);
         div.append(editButton);
+        div.append(pDate);
         div.append(pDescription);
     
          // Text in elements
@@ -121,8 +123,8 @@ function showTodos() {
         
         //Styling
         pDate.classList.add("bold", "p-todo");
-        pTime.classList.add("semi-bold", "p-todo");
-        pDescription.classList.add("p-todo");
+        pTime.classList.add("bold", "p-todo");
+        pDescription.classList.add("p-todo", "normal");
         div.classList.add("div-todo");
         
         createNotification();

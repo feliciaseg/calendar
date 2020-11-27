@@ -7,18 +7,12 @@ body {
 
 aside {
     width: 100%;
-    height: 24rem;
+    height: 20rem;
 }
 
 main {
     width: 100%;
     height: calc(100% - 10rem);
-}
-
-h4 {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 0;       
 }
 
 label {
@@ -34,46 +28,49 @@ label {
 }
 
 .primary-content {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1.5fr .5fr; 
-        gap: 1.5rem;
-        margin-top: 1rem;
-        
-        /* display: none; */
+    column-gap: 3rem;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-areas: 
+    "time-n-date todo-container"
+    "add-button todo-container"
+    ;
 }
 
-.time-and-date {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.time-and-date h3 {
-    padding: 0rem 0rem;
+.todo-container {
+    margin: 0;
 }
 
 .button-primary {
-    grid-column: 1;
-    grid-row: 2; 
+    align-self: end;
 }
 
 .new-items-box {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr .3;
-    gap: 3rem;
-    margin-top: 2rem;
-    
+    display: grid;
+    padding: 3rem;
+    column-gap: 3rem;
+    height: 100%; 
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-areas: 
+    "h4 input"
+    "input-button input"
+    ;
 }
 
 .input-form {
-    grid-column: 2;
-    grid-row: 1;
-    height: 13rem; 
-    justify-self: end;
+    padding: 0;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+input {
+    height: 1.2rem;
 }
 
 .button-box {
-    grid-column: 1;
-    grid-row: 2; 
+    align-self: end;
 }
 
 

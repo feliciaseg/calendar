@@ -15,7 +15,6 @@ function addTodoEventListeners() {
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
-    // todo.addEventListeners("click",removeTodo);
 }
 
 
@@ -102,9 +101,6 @@ function showTodos() {
         const removeButton = document.createElement("span"); 
         removeButton.classList.add("material-icons");
         removeButton.innerHTML = 'close';
-        removeButton.addEventListener("click", function() {
-        removeTodo(task)
-        })
 
         const editButton = document.createElement("span");
         editButton.classList.add("material-icons");
@@ -134,11 +130,3 @@ function showTodos() {
   
 } 
 
-
-  function removeTodo(task){
-    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
-    savedTasks.splice(task, 1)
-    localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
-    showTodos();
-    createNotification();
-}

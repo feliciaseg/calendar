@@ -12,30 +12,56 @@ function todoMain() {
 /** Adds event listeners */
 function addTodoEventListeners() {
     const btnOpenNewTask = document.getElementById("openNewTask");
-    btnOpenNewTask.addEventListener("click", openNewDiv);
+    btnOpenNewTask.addEventListener("click", openNewTask);
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
-
 
     const goBackLink = document.getElementById("goBack")
     goBackLink.addEventListener("click", goBack);
 
 }
 
+// /**  */
 function goBack(){
-    clearInput();
+ clearInput();
+ openNewDiv();
 }
+
+function openNewTask(){
+    clearInput();
+    openNewDiv();
+    showAddNewItemBtn();
+}
+
+
 
 /** Displays or hide the divs*/
 function openNewDiv(){
-    newTaskDiv = document.getElementById("newTaskDiv")
-    primaryDiv =  document.getElementById("primaryContentDiv")
+    const newTaskDiv = document.getElementById("newTaskDiv")
+    const primaryDiv =  document.getElementById("primaryContentDiv")
 
     newTaskDiv.classList.toggle("none");
     primaryDiv.classList.toggle("none");
 }
 
+/** Shows ''Add new Item'' button */
+function showAddNewItemBtn(){
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.remove("none");
+
+    const saveEditsBtn = document.getElementById("saveEditsBtn")
+    saveEditsBtn.classList.add("none");
+}
+
+/** Shows ''Save Edits'' button */
+function showSaveEditsBtn(){
+    const saveEditsBtn = document.getElementById("saveEditsBtn")
+    saveEditsBtn.classList.remove("none");
+    
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.add("none");
+}
 
 /** Saves input value from the form */
 let tasks = []
@@ -77,7 +103,6 @@ function updateLS(task) {
     tasks.push(task);
     localStorage.setItem("savedTasks", JSON.stringify(tasks));
     showTodos();
-    
 }
 
 /** Empties the todo container*/
@@ -87,9 +112,7 @@ function emptyTodoContainer(){
    
     while (containerChildren.length > 0) {
         containerChildren[0].remove()
-    }
-    
-    
+    } 
 }
 
 /** Shows all saved tasks/todos */
@@ -109,23 +132,22 @@ function showTodos() {
         pTime.classList.add("time")
         const pDescription = document.createElement ("p");
         pDescription.classList.add("description")
+        
         const removeButton = document.createElement("span"); 
         removeButton.classList.add("material-icons", "remove");
-
         removeButton.innerHTML = 'close';
-
-        removeButton.addEventListener("click", function() {
-        removeTodo(removeButton)
+        removeButton.addEventListener("click", function(){
+        removeTodo(removeButton);
         })
-
 
         const editButton = document.createElement("span");
         editButton.classList.add("material-icons", "editButton", "edit");       
         editButton.setAttribute("id", number++);
         editButton.innerHTML = 'edit';
-        editButton.addEventListener("click", function (){
+        editButton.addEventListener("click", function(){
             let buttonID = (editButton).id
             openNewDiv();
+            showSaveEditsBtn();
             openEditor(buttonID, savedTasks);
             //BUTTONID = INDEX OF CLICKED ELEMENT
         })
@@ -156,13 +178,14 @@ function showTodos() {
 } 
 
 
-/** Opens 'edit-mode' 
- * @param {number} buttonID
- * @param {Array} savedTasks
-*/
+// /** Opens 'edit-mode' 
+//  * @param {number} buttonID
+//  * @param {Array} savedTasks
+// */
 function openEditor(buttonID, savedTasks){
-    changeBtn();
-    saveEditsBtn = document.getElementById("saveEditsBtn")
+    
+    const saveEditsBtn = document.getElementById("saveEditsBtn")
+    
     //INPUTFIELDS
   
     const inputDescription = document.getElementById("description");
@@ -177,40 +200,30 @@ function openEditor(buttonID, savedTasks){
     inputTime.value = savedTasks[buttonID].time
     
     
-    // SAVES NEW INPUT
-    saveEditsBtn.addEventListener("click", function (){
+    saveEditsBtn.addEventListener("click", function(){
     
     savedTasks[buttonID].description = inputDescription.value
     savedTasks[buttonID].date = inputDate.value
     savedTasks[buttonID].time = inputTime.value
 
-    // UPDATE LS
+    // // UPDATE LS
     localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
-    openNewDiv();
-    showTodos();
-    createNotification();
     
+     showTodos();
+     createNotification();
+     })
     
-})
 }
 
-/** Changes to the "saveEditsBtn" */
-function changeBtn(){
-    const addNewItemBtn = document.getElementById("addNewItem");
-    addNewItemBtn.classList.toggle("none");
 
-    const saveEditsBtn = document.getElementById("saveEditsBtn");
-    saveEditsBtn.classList.toggle("none");
-
-}
-
-function clearInput() {
+/** Clears all Inputfields */
+function clearInput(){
     //Get and clear inputfields
     document.getElementById("description").value = "";
     document.getElementById("datePicked").value = "";
     document.getElementById("timePicked").value = "";
-
 }
+
 
 function removeTodo(button) {
     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));

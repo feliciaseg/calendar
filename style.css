@@ -11,74 +11,166 @@ html, body {
 }
 
 body {
-    flex-direction: row;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "aside main";
 }
+
+/* --- ASIDE ---- */
 
 aside {
-    /* background-color: #f2f2f2; */
-    /* Jag har lagt till ovan i ''reusable classes'' istället /FS */
-    width: 28.8rem;
     height: 100%;
-}
-
-main {
-    width: calc(100% - 20rem);
-    height: 100%;
-}
-
-
-h4 {
-    font-size: 2.2rem;
-    margin: 0;
-}
-
-.time-and-date h3 {
-    font-size: 2.2rem;
-    padding: 0rem 2rem;
+    width: 100%;
+    grid-area: aside;
 }
 
 .primary-content {
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    max-width: 35rem;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr .5fr;
-    margin-top: 3.8rem;
-    margin-left: 3.8rem;
-    margin-right: 3.8rem;
-    margin-bottom: 3.8rem;
-    height: 100%;  
+    padding: 2.5rem;
+    grid-template-areas: 
+    "time-n-date"
+    "todo-container"
+    "add-button"
+    ;
 }
 
-.button-primary button {
-    grid-column: 1;
-    grid-row: 3;
-    justify-self: end;
-    align-self: end;
-    padding: 0.5rem 1.5rem;
+/* Time and date */
+
+.time-and-date {
+    height: fit-content;
+    grid-area: time-n-date;
+}
+
+.time-and-date h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.time-and-date h3:nth-child(2) {
+    margin-top: 0.8rem;
+}
+
+/* Todo container */
+
+.todo-container {
+    margin: 2rem 0;
+    grid-area: todo-container;
+    overflow-y: scroll;
+}
+
+.todo-container-inner {
+    height: 100%;
+}
+
+.p-todo {
     font-size: 1.5rem;
-    width: 100%;     
+    margin: 0;
 }
 
-.p-todo{
-    font-size:1.5rem;
-    margin: 0.5rem;
+.div-todo {
+    display: grid;
+    margin: 0 0 1rem 0;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 
+    "date time edit delete"
+    "description description description description"
+    ;
 }
 
-.div-todo{
-    padding: 0.5rem 2rem;
+.time {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    grid-area: time;
 }
 
-/* ---- TODO INPUT FIELD ---- */
+.date {
+    font-size: 1rem;
+    grid-area: date;
+}
+
+.description {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    grid-area: description;
+}
+
+.edit {
+    justify-self: end;
+    font-size: 1rem;
+    padding: 0;
+    margin-right: 0.5rem;
+    grid-area: edit;
+    cursor: pointer;
+}
+
+.remove {
+    justify-self: end;
+    font-size: 1rem;
+    padding: 0;
+    margin-right: 0.5rem;
+    grid-area: delete;
+    cursor: pointer;
+}
+
+/* Add item button */
+
+.button-primary {
+    height: fit-content;
+    grid-area: add-button;
+}
+
+.button-box, .button-primary {
+    align-self: end;
+}
+
+.add-button {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    width: 100%;
+    cursor: pointer; 
+}
+
+.add-button span {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* TODO INPUT FIELD */
+
+.todo-input-field {
+    height: 100%;
+    width: 100%;
+}
 
 .new-items-box {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .5fr 3fr 1fr;
-    margin-top: 3rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-bottom: 3rem;
-    height: 100vh; 
-    /* display: none; */
+    padding: 2.5rem;
+    height: 100%;
+    width: 100%;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "h4"
+    "input"
+    "input-button"
+    ;
+}
+
+.new-items-box h4 {
+    margin: 0;
+    font-size: 2.2rem;
+    grid-area: h4;
+}
+
+.input-form {
+    padding: 2rem 0;
+    grid-area: input;
 }
 
 label {
@@ -90,38 +182,42 @@ label {
     font-size: 1.5rem;
 }
 
-.button-box button {
-    grid-column: 1;
-    grid-row: 3;
-    padding: 0.5rem 1.5rem;
-    font-size: 1.5rem;
-    width: 100%; 
-    max-width: 20rem;   
+.button-box {
+    width: 100%;
+    grid-area: input-button; 
 }
 
-button {
-    border: none;
-    border-radius: .3rem;   
-}
-
-span {
-    padding-right: 3rem;
-    font-size: 2rem;
-}
-
-input {
+.input-form input {
     width: 100%;
     padding: 1rem;
     border: none;
     font-size: 1.5rem;
 }
 
-/* ---- CALENDAR ---- */
+/* ---- MAIN ---- */
+
+main {
+    height: 100%;
+    width: 100%;
+    align-content: center;
+    grid-area: main
+}
+
+/* CALENDAR CONTAINER */
 
 .calendar-container {
-    width: 100%;
+    display: grid;
     height: 100%;
-    padding: 3rem;
+    width: 100%;
+    max-width: 90rem;
+    margin: auto;
+    padding: 2.5rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+    "month"
+    "days"
+    "calendar";
 }
 
 /* MONTH PICKER */
@@ -130,6 +226,7 @@ input {
     height: 4rem;
     width: 100%;
     border: 0.1rem solid darkgrey;
+    grid-area: month;
 }
 
 .month-container p {
@@ -146,14 +243,17 @@ input {
     height: 100%;
     margin: 0;
     border-radius: 0;
+    border: none;
 }
 
 .previous-button {
     border-right: 0.1rem solid darkgrey;
+    cursor: pointer;
 }
 
 .next-button {
     border-left: 0.1rem solid darkgrey;
+    cursor: pointer;
 }
 
 .go-back {
@@ -168,26 +268,28 @@ input {
     font-size: 1.1rem;
     width: 100%;
     grid-template-columns: repeat(7, 1fr);
+    grid-area: days;
 }
 
 .calendar {
+    height: 100%;
     width: 100%;
     border-top: 1px solid darkgray;
     border-left: 1px solid darkgray;
-    height: calc(100% - 7rem);
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
+    grid-area: calendar;
 }
 
 .calendar-div {
     display: grid;
-    padding: 0.8rem;
+    padding: 10%;
     border-right: 1px solid darkgray;
     border-bottom: 1px solid darkgray;
     background-color: white;
+    grid-template-rows: auto 1fr;
     grid-template-areas: 
     "notification date"
-    ". ."
     "holiday holiday"
     ;
 }
@@ -197,7 +299,7 @@ input {
     justify-self: right;
     font-weight: 900;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     grid-area: date;
 }
 
@@ -205,19 +307,20 @@ input {
     align-self: end;
     margin: 0;
     grid-area: holiday;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .notification {
     width: fit-content;
     height: fit-content;
-    padding: 0.2rem 0.6rem;
+    padding: 0.1rem 0.5rem;
     border-radius: 100%;
     grid-area: notification;
 }
 
 .notification p {
     margin: 0;
+    font-size: 1rem;
 }
 
 .filler-div p {

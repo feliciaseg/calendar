@@ -118,7 +118,7 @@ function showTodos() {
 
 
         const editButton = document.createElement("span");
-        editButton.classList.add("material-icons", "editButton", "edit);       
+        editButton.classList.add("material-icons", "editButton", "edit");       
         editButton.setAttribute("id", number++);
         editButton.innerHTML = 'edit';
         editButton.addEventListener("click", function (){

@@ -156,6 +156,11 @@ input {
     border-left: 0.1rem solid darkgrey;
 }
 
+#goBack {
+    text-decoration: underline;
+    text-align: left;
+    cursor: pointer;
+}
 /* CALENDAR */
 
 .days {

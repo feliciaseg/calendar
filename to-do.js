@@ -15,7 +15,9 @@ function addTodoEventListeners() {
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
+   
 }
+
 
 
 /** Displays or hide the divs*/
@@ -93,16 +95,20 @@ function showTodos() {
      
      for (task in savedTasks) {
         const div = document.createElement("div");
+        div.classList.add("todo")
         const pDate = document.createElement("p");
         pDate.classList.add("date")
         const pTime = document.createElement("p");
         pTime.classList.add("time")
         const pDescription = document.createElement ("p");
         pDescription.classList.add("description")
-
         const removeButton = document.createElement("span"); 
         removeButton.classList.add("material-icons", "remove");
+
         removeButton.innerHTML = 'close';
+        removeButton.addEventListener("click", function() {
+        removeTodo(removeButton)
+        })
 
         const editButton = document.createElement("span");
         editButton.classList.add("material-icons", "edit");
@@ -131,4 +137,19 @@ function showTodos() {
     } 
   
 } 
+
+function removeTodo(button) {
+    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+    const todos = document.getElementsByClassName("todo")
+    
+    console.log(button.parentElement)
+    for (i = 0; i < todos.length; i++) {
+        if (button.parentElement === todos[i]) {
+            savedTasks.splice(i, 1)
+            localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+            showTodos();
+            createNotification();
+        }
+    }
+}
 

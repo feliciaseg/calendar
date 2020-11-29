@@ -19,11 +19,13 @@ function addTodoEventListeners() {
 
 
     const goBackLink = document.getElementById("goBack")
-    goBackLink.addEventListener("click", openNewDiv);
+    goBackLink.addEventListener("click", goBack);
 
 }
 
-
+function goBack(){
+    clearInput();
+}
 
 /** Displays or hide the divs*/
 function openNewDiv(){
@@ -199,6 +201,14 @@ function changeBtn(){
 
     const saveEditsBtn = document.getElementById("saveEditsBtn");
     saveEditsBtn.classList.toggle("none");
+
+}
+
+function clearInput() {
+    //Get and clear inputfields
+    document.getElementById("description").value = "";
+    document.getElementById("datePicked").value = "";
+    document.getElementById("timePicked").value = "";
 
 }
 

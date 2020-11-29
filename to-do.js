@@ -6,6 +6,7 @@ window.onload = todoMain;
 function todoMain() {
     addTodoEventListeners();
     showTodos();
+    createNotification();
 }
 
 /** Adds event listeners */
@@ -15,7 +16,11 @@ function addTodoEventListeners() {
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
-   
+
+
+    const goBackLink = document.getElementById("goBack")
+    goBackLink.addEventListener("click", openNewDiv);
+
 }
 
 
@@ -32,7 +37,6 @@ function openNewDiv(){
 
 /** Saves input value from the form */
 let tasks = []
-
 function addNewItem(event){
     const inputFields = document.querySelectorAll("input")
 
@@ -88,11 +92,12 @@ function emptyTodoContainer(){
 
 /** Shows all saved tasks/todos */
 function showTodos() {
-     emptyTodoContainer();
+    emptyTodoContainer();
 
-     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
-     const todoContainer = document.getElementById("todos");
+    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+    const todoContainer = document.getElementById("todos");
      
+    let number= 0;
      for (task in savedTasks) {
         const div = document.createElement("div");
         div.classList.add("todo")
@@ -106,13 +111,22 @@ function showTodos() {
         removeButton.classList.add("material-icons", "remove");
 
         removeButton.innerHTML = 'close';
+
         removeButton.addEventListener("click", function() {
         removeTodo(removeButton)
         })
 
+
         const editButton = document.createElement("span");
-        editButton.classList.add("material-icons", "edit");
+        editButton.classList.add("material-icons", "editButton", "edit);       
+        editButton.setAttribute("id", number++);
         editButton.innerHTML = 'edit';
+        editButton.addEventListener("click", function (){
+            let buttonID = (editButton).id
+            openNewDiv();
+            openEditor(buttonID, savedTasks);
+            //BUTTONID = INDEX OF CLICKED ELEMENT
+        })
     
          // Append elements
         todoContainer.append(div);
@@ -127,6 +141,7 @@ function showTodos() {
         pTime.innerHTML = (savedTasks[task].time);
         pDescription.innerHTML = (savedTasks[task].description);  
         
+
         //Styling
         pDate.classList.add("bold", "p-todo");
         pTime.classList.add("bold", "p-todo");
@@ -137,6 +152,55 @@ function showTodos() {
     } 
   
 } 
+
+
+/** Opens 'edit-mode' 
+ * @param {number} buttonID
+ * @param {Array} savedTasks
+*/
+function openEditor(buttonID, savedTasks){
+    changeBtn();
+    saveEditsBtn = document.getElementById("saveEditsBtn")
+    //INPUTFIELDS
+  
+    const inputDescription = document.getElementById("description");
+    const inputDate = document.getElementById("datePicked");
+    const inputTime = document.getElementById("timePicked");
+
+   
+    //PLACEHOLDERS IN INPUTFIELDS
+    //BUTTONID = INDEX OF CLICKED ELEMENT
+    inputDescription.value = savedTasks[buttonID].description 
+    inputDate.value = savedTasks[buttonID].date
+    inputTime.value = savedTasks[buttonID].time
+    
+    
+    // SAVES NEW INPUT
+    saveEditsBtn.addEventListener("click", function (){
+    
+    savedTasks[buttonID].description = inputDescription.value
+    savedTasks[buttonID].date = inputDate.value
+    savedTasks[buttonID].time = inputTime.value
+
+    // UPDATE LS
+    localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+    location.reload(); //Jag laddar om sidan för att ''notifikationerna'' i kalendern ska uppdateras, kommentera gärna om ni vet ett bättre
+    openNewDiv();
+    showTodos();
+    
+    
+})
+}
+
+/** Changes to the "saveEditsBtn" */
+function changeBtn(){
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.toggle("none");
+
+    const saveEditsBtn = document.getElementById("saveEditsBtn");
+    saveEditsBtn.classList.toggle("none");
+
+}
 
 function removeTodo(button) {
     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
@@ -152,4 +216,5 @@ function removeTodo(button) {
         }
     }
 }
+
 

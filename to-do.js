@@ -176,6 +176,7 @@ function openEditor(buttonID, savedTasks){
     openNewDiv();
     showTodos();
     
+    
 })
 }
 

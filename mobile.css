@@ -28,6 +28,8 @@ aside {
     ;
 }
 
+/* Time and date */
+
 .time-and-date h3 {
     font-size: 1.6rem;
 }
@@ -50,6 +52,8 @@ aside {
     margin-top: 0rem;
     font-size: 1.3rem;
 }
+
+/* ---- TODO INPUT FIELD ---- */
 
 .new-items-box {
     display: grid;

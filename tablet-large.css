@@ -18,6 +18,7 @@ aside {
 
 .primary-content {
     column-gap: 2rem;
+    max-width: unset;
     grid-template-columns: 1fr 1.3fr;
     grid-template-areas: 
     "time-n-date todo-container"
@@ -86,14 +87,6 @@ main {
     width: 100%;
 }
 
-/* CALENDAR */
-
-.calendar {
-    width: 100%;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-}
-
 /* MONTH PICKER */
 
 .month-container {
@@ -106,6 +99,14 @@ main {
 
 .month-container span {
     font-size: 1.8rem;
+}
+
+/* CALENDAR */
+
+.calendar {
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
 }
 
 

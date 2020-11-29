@@ -184,9 +184,9 @@ function openEditor(buttonID, savedTasks){
 
     // UPDATE LS
     localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
-    location.reload(); //Jag laddar om sidan för att ''notifikationerna'' i kalendern ska uppdateras, kommentera gärna om ni vet ett bättre
     openNewDiv();
     showTodos();
+    createNotification();
     
     
 })

@@ -1,22 +1,23 @@
 /* MOBILE */
 /* max-width: 600px */
 
-main {
-    display: none;
+body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "aside"
+    ;
 }
 
+/* ---- ASIDE ---- */
+
 aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
     height: 100%;
 }
 
 .primary-content {
     display: grid;
-    padding: 3rem;
+    padding: 2rem;
     width: 100%;
     height: 100%;
     grid-template-columns: 1fr;
@@ -35,8 +36,10 @@ aside {
     margin-top: 0.5rem;
 }
 
+/* Todo container */
+
 .todo-container {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 .date, .time {
@@ -48,13 +51,9 @@ aside {
     font-size: 1.3rem;
 }
 
-.button-primary button, .button-box button {
-    font-size: 1.2rem;
-}
-
 .new-items-box {
     display: grid;
-    padding: 3rem;
+    padding: 2rem;
     column-gap: 5rem;
     height: 100%; 
     grid-template-rows: auto 1fr auto;
@@ -73,6 +72,10 @@ aside {
     height: 100%;
 }
 
+.input-form label {
+    margin-top: 1rem;
+}
+
 .new-items-box h4 {
     font-size: 1.6rem;
     width: 100%;
@@ -80,4 +83,10 @@ aside {
 
 input {
     font-size: 1.3rem;
+}
+
+/* ---- MAIN ---- */
+
+main {
+    display: none;
 }

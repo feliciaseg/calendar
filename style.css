@@ -11,25 +11,24 @@ html, body {
 }
 
 body {
-    flex-direction: row;
-}
-
-main {
-    width: 65%;
-    height: 100%;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "aside main";
 }
 
 /* --- ASIDE ---- */
 
 aside {
-    width: 35%;
     height: 100%;
+    width: 100%;
+    grid-area: aside;
 }
 
 .primary-content {
-    display: grid;
-    padding: 3rem;
     height: 100%;
+    display: grid;
+    padding: 2.5rem;
     grid-template-areas: 
     "time-n-date"
     "todo-container"
@@ -45,12 +44,12 @@ aside {
 }
 
 .time-and-date h3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin: 0;
 }
 
 .time-and-date h3:nth-child(2) {
-    margin-top: 1rem;
+    margin-top: 0.8rem;
 }
 
 /* Todo container */
@@ -82,23 +81,24 @@ aside {
 
 .time {
     margin-left: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     grid-area: time;
 }
 
 .date {
-    font-size: 1.2rem;
+    font-size: 1rem;
     grid-area: date;
 }
 
 .description {
     margin-top: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     grid-area: description;
 }
 
 .edit {
     justify-self: end;
+    font-size: 1rem;
     padding: 0;
     margin-right: 0.5rem;
     grid-area: edit;
@@ -107,6 +107,7 @@ aside {
 
 .remove {
     justify-self: end;
+    font-size: 1rem;
     padding: 0;
     margin-right: 0.5rem;
     grid-area: delete;
@@ -120,16 +121,25 @@ aside {
     grid-area: add-button;
 }
 
-.button-primary button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1.5rem;
-    width: 100%;
-    cursor: pointer;   
+.button-box, .button-primary {
+    align-self: end;
 }
 
+.add-button {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    width: 100%;
+    cursor: pointer; 
+}
 
+.add-button span {
+    margin: 0;
+    font-size: 2rem;
+}
 
-/* ---- TODO INPUT FIELD ---- */
+/* TODO INPUT FIELD */
 
 .todo-input-field {
     height: 100%;
@@ -138,7 +148,7 @@ aside {
 
 .new-items-box {
     display: grid;
-    padding: 3rem;
+    padding: 2.5rem;
     height: 100%;
     width: 100%;
     grid-template-rows: auto 1fr auto;
@@ -174,36 +184,34 @@ label {
     grid-area: input-button; 
 }
 
-.button-box button, .primary-button button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1.5rem;
-    width: 100%;
-    cursor: pointer; 
-}
-
-button {
-    border: none;
-    border-radius: .3rem;  
-}
-
-button span {
-    margin-right: 8%;
-    font-size: 2rem;
-}
-
-input {
+.input-form input {
     width: 100%;
     padding: 1rem;
     border: none;
     font-size: 1.5rem;
 }
 
-/* ---- CALENDAR ---- */
+/* ---- MAIN ---- */
+
+main {
+    height: auto;
+    width: 100%;
+    grid-area: main
+}
+
+/* CALENDAR */
 
 .calendar-container {
-    width: 100%;
+    display: grid;
     height: 100%;
-    padding: 3rem;
+    width: 100%;
+    padding: 2.5rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+    "month"
+    "days"
+    "calendar";
 }
 
 /* MONTH PICKER */
@@ -212,6 +220,7 @@ input {
     height: 4rem;
     width: 100%;
     border: 0.1rem solid darkgrey;
+    grid-area: month;
 }
 
 .month-container p {
@@ -228,6 +237,7 @@ input {
     height: 100%;
     margin: 0;
     border-radius: 0;
+    border: none;
 }
 
 .previous-button {
@@ -247,15 +257,17 @@ input {
     font-size: 1.1rem;
     width: 100%;
     grid-template-columns: repeat(7, 1fr);
+    grid-area: days;
 }
 
 .calendar {
+    height: 100%;
     width: 100%;
     border-top: 1px solid darkgray;
     border-left: 1px solid darkgray;
-    height: calc(100% - 7rem);
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(6, 1fr);
+    grid-area: calendar;
 }
 
 .calendar-div {
@@ -264,9 +276,9 @@ input {
     border-right: 1px solid darkgray;
     border-bottom: 1px solid darkgray;
     background-color: white;
+    grid-template-rows: auto 1fr;
     grid-template-areas: 
     "notification date"
-    ". ."
     "holiday holiday"
     ;
 }
@@ -284,7 +296,7 @@ input {
     align-self: end;
     margin: 0;
     grid-area: holiday;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .notification {

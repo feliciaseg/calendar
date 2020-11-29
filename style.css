@@ -142,6 +142,22 @@ aside {
     font-size: 2rem;
 }
 
+/* Save edits button */
+.save-edits-button {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    width: 100%;
+    cursor: pointer; 
+}
+
+.save-edits-button span {
+    margin: 0;
+    font-size: 2rem;
+}
+
+
 /* TODO INPUT FIELD */
 
 .todo-input-field {

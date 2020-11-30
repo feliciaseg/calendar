@@ -22,7 +22,7 @@ function addTodoEventListeners() {
     goBackLink.addEventListener("click", openNewDiv);
 
 }
-
+//Lägg till changeToNew(); i Go back funktionen (kommentar till mig själv/FS)
 
 
 /** Displays or hide the divs*/
@@ -38,6 +38,7 @@ function openNewDiv(){
 /** Saves input value from the form */
 let tasks = []
 function addNewItem(event){
+    changeHeadingToNew()
     const inputFields = document.querySelectorAll("input")
 
     // Counter for the amount of filled inputfields
@@ -86,8 +87,6 @@ function emptyTodoContainer(){
     while (containerChildren.length > 0) {
         containerChildren[0].remove()
     }
-    
-    
 }
 
 /** Shows all saved tasks/todos */
@@ -159,6 +158,7 @@ function showTodos() {
  * @param {Array} savedTasks
 */
 function openEditor(buttonID, savedTasks){
+    changeHeadingToEdit();
     changeBtn();
     saveEditsBtn = document.getElementById("saveEditsBtn")
     //INPUTFIELDS
@@ -184,6 +184,7 @@ function openEditor(buttonID, savedTasks){
 
     // UPDATE LS
     localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+    changeHeadingToNew();
     openNewDiv();
     showTodos();
     createNotification();
@@ -191,6 +192,17 @@ function openEditor(buttonID, savedTasks){
     
 })
 }
+
+function changeHeadingToEdit(){
+    const heading = document.getElementById("heading");
+    heading.innerHTML = "Edit Task";
+}
+
+function changeHeadingToNew(){
+    const heading = document.getElementById("heading");
+    heading.innerHTML = "New Task";
+}
+
 
 /** Changes to the "saveEditsBtn" */
 function changeBtn(){

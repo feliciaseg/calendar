@@ -70,11 +70,12 @@ function showSaveEditsBtn(){
     addNewItemBtn.classList.add("none");
 }
 
-/** Saves input value from the form 
- * @param {event} event
-*/
+ /** Saves input value from the form 
+   * @param {MouseEvent} event
+  */
 function addNewItem(event){
     changeHeadingToNew();
+    console.log(event)
     const inputFields = document.querySelectorAll("input")
     // Counter for the amount of filled inputfields
     let correctInput = 0;
@@ -158,7 +159,7 @@ function showTodos() {
                 let buttonID = (editButton).id
                 showNewTaskDiv();
                 openEditor(buttonID, savedTasks);
-                //Button id = index of clicked element
+                //ButtonID = index of clicked element
             })
     
          // Append elements
@@ -208,6 +209,7 @@ function openEditor(buttonID, savedTasks){
     
     
     saveEditsBtn.addEventListener("click", function(){
+        //Saves new inputs
         savedTasks[buttonID].description = inputDescription.value;
         savedTasks[buttonID].date = inputDate.value;
         savedTasks[buttonID].time = inputTime.value;

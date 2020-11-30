@@ -29,7 +29,7 @@ function goBack(){
  changeHeadingToNew();
 }
 
-//Lägg till changeToNew(); i Go back funktionen (kommentar till mig själv/FS)
+
 
 
 function openNewTask(){
@@ -229,6 +229,7 @@ function openEditor(buttonID, savedTasks){
     createNotification();
     showPrimaryDiv();  
     })
+
 }
 
 function changeHeadingToEdit(){

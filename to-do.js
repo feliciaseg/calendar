@@ -20,14 +20,12 @@ function addTodoEventListeners() {
     const goBackLink = document.getElementById("goBack")
     goBackLink.addEventListener("click", goBack);
 
-    
-
 }
 
 // /**  */
 function goBack(){
  clearInput();
- openNewDiv();
+ showPrimaryDiv();
  changeHeadingToNew();
 }
 
@@ -36,19 +34,26 @@ function goBack(){
 
 function openNewTask(){
     clearInput();
-    openNewDiv();
+    showNewTaskDiv();
     showAddNewItemBtn();
 }
 
-//skriva om funktionen på samma sätt som knapparna??
 
-/** Displays or hide the divs*/
-function openNewDiv(){
-    const newTaskDiv = document.getElementById("newTaskDiv");
+function showPrimaryDiv(){
     const primaryDiv = document.getElementById("primaryContentDiv");
+    primaryDiv.classList.remove("none")
 
-    newTaskDiv.classList.toggle("none");
-    primaryDiv.classList.toggle("none");
+    const newTaskDiv = document.getElementById("newTaskDiv");
+    newTaskDiv.classList.add("none");
+}
+
+
+function showNewTaskDiv(){
+    const newTaskDiv = document.getElementById("newTaskDiv");
+    newTaskDiv.classList.remove("none");
+
+    const primaryDiv = document.getElementById("primaryContentDiv");
+    primaryDiv.classList.add("none")
 }
 
 /** Shows ''Add new Item'' button */
@@ -97,7 +102,7 @@ function addNewItem(event){
             description: document.getElementById("description").value
         }
         updateLS(task);
-        openNewDiv();
+        showPrimaryDiv();
     }
     event.preventDefault();
 }
@@ -155,7 +160,7 @@ function showTodos() {
         editButton.innerHTML = 'edit';
         editButton.addEventListener("click", function(){
             let buttonID = (editButton).id
-            openNewDiv();
+            showNewTaskDiv();
             openEditor(buttonID, savedTasks);
             //BUTTONID = INDEX OF CLICKED ELEMENT
         })
@@ -218,18 +223,19 @@ function openEditor(buttonID, savedTasks){
     
     // // UPDATE LS
     localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
-    changeHeadingToNew();
-    openNewDiv();
-    showTodos();
-    createNotification();    
-    
-}
 
+    changeHeadingToNew();
+    showTodos();
+    createNotification();
+    showPrimaryDiv();  
+    })
+}
 
 function changeHeadingToEdit(){
     const heading = document.getElementById("heading");
     heading.innerHTML = "Edit Task";
 }
+
 
 function changeHeadingToNew(){
     const heading = document.getElementById("heading");
@@ -244,6 +250,7 @@ function changeBtn(){
 
     const saveEditsBtn = document.getElementById("saveEditsBtn");
     saveEditsBtn.classList.toggle("none");
+}
 
 
 /** Clears all Inputfields */

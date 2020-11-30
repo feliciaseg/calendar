@@ -40,8 +40,8 @@ function openNewTask(){
 
 /** Displays or hide the divs*/
 function openNewDiv(){
-    const newTaskDiv = document.getElementById("newTaskDiv")
-    const primaryDiv = document.getElementById("primaryContentDiv")
+    const newTaskDiv = document.getElementById("newTaskDiv");
+    const primaryDiv = document.getElementById("primaryContentDiv");
 
     newTaskDiv.classList.toggle("none");
     primaryDiv.classList.toggle("none");
@@ -184,7 +184,6 @@ function showTodos() {
   * @param {Array} savedTasks
  */
 function openEditor(buttonID, savedTasks){
-    
     showSaveEditsBtn();
     const saveEditsBtn = document.getElementById("saveEditsBtn")
     
@@ -225,8 +224,6 @@ function clearInput(){
     document.getElementById("datePicked").value = "";
     document.getElementById("timePicked").value = "";
 }
-
-
 
 
 function removeTodo(button) {

@@ -1,4 +1,7 @@
 
+/** Array to save object (task) in*/
+let tasks = []
+
 /** Sets function to run on window load */
 window.onload = todoMain;
 
@@ -75,7 +78,6 @@ function showSaveEditsBtn(){
 }
 
 /** Saves input value from the form */
-let tasks = []
 function addNewItem(event){
     changeHeadingToNew()
     const inputFields = document.querySelectorAll("input")

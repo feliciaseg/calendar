@@ -32,6 +32,7 @@ aside {
     max-width: 35rem;
     display: grid;
     padding: 2.5rem;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: 
     "time-n-date"
     "todo-container"

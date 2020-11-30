@@ -221,8 +221,8 @@ function openEditor(buttonID, savedTasks){
     changeHeadingToNew();
     openNewDiv();
     showTodos();
-    createNotification();    
-    
+    createNotification();
+    });
 }
 
 
@@ -244,7 +244,7 @@ function changeBtn(){
 
     const saveEditsBtn = document.getElementById("saveEditsBtn");
     saveEditsBtn.classList.toggle("none");
-
+}
 
 /** Clears all Inputfields */
 function clearInput(){

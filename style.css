@@ -148,6 +148,7 @@ aside {
 }
 
 /* Save edits button */
+
 .save-edits-button {
     border: none;
     border-radius: 0.3rem;
@@ -161,7 +162,6 @@ aside {
     margin: 0;
     font-size: 2rem;
 }
-
 
 /* TODO INPUT FIELD */
 

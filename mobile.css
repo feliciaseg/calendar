@@ -28,7 +28,7 @@ aside {
     ;
 }
 
-/* Time and date */
+/* ---- Time and date ---- */
 
 .time-and-date h3 {
     font-size: 1.6rem;
@@ -38,7 +38,7 @@ aside {
     margin-top: 0.5rem;
 }
 
-/* Todo container */
+/* ---- Todo container ---- */
 
 .todo-container {
     margin: 1.5rem 0;

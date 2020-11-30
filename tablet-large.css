@@ -87,7 +87,7 @@ main {
     width: 100%;
 }
 
-/* MONTH PICKER */
+/* ---- MONTH PICKER ---- */
 
 .month-container {
     height: 3rem;
@@ -101,7 +101,7 @@ main {
     font-size: 1.8rem;
 }
 
-/* CALENDAR */
+/* ---- CALENDAR ---- */
 
 .calendar {
     width: 100%;

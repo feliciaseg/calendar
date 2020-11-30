@@ -25,7 +25,7 @@
 </head>
 <body class="grid">
 
-    <!-- Gråa Diven Todolist -->
+    <!-- Primary content div -->
                      
     <aside class= "aside light-grey-bg"> 
         <div class="primary-content" id = "primaryContentDiv">
@@ -41,16 +41,18 @@
           <div class="button-primary">
                <button id="openNewTask" class="add-button flex justify-space-between primary-background align-center" type="add">
                    <span class="material-icons">add</span>
-                   Add new item
+                         Add new item
                    <span class="material-icons transparent">add</span>
                 </button>
-            </div>
+          </div>
         </div>
-  
+
+    <!-- Form for adding input -->
+
         <div class="todo-input-field none" id="newTaskDiv">
-          <div class="new-items-box">
-             <h4 id="heading" class="bold">New task</h4>
-                <div id="form" class="input-form">
+           <div class="new-items-box">
+               <h4 id="heading" class="bold">New task</h4>
+               <div id="form" class="input-form">
                     <label for="datepicker">Description</label> 
                     <input type="text" name="datepicker" id="description" maxlength="35">
 
@@ -61,28 +63,28 @@
                     <input type="time"  name="appt" id="timePicked">
 
                 </div>
-           
-                  <div class="button-box" id="button-box">
+
+           <!-- buttons  -->
+
+                <div class="button-box" id="button-box">
                     <button id= "addNewItem" class="add-button flex justify-space-between primary-background align-center" type="add">
                         <span class="material-icons">add</span>
-                        Add new item
+                              Add new item
                         <span class="material-icons transparent">add</span>
                     </button>
                     <button id= "saveEditsBtn" class= "save-edits-button flex justify-space-between primary-background align-center none">
                       <span class="material-icons">add</span>
-                      Save Edits
-                     <span class="material-icons transparent">add</span> </button>
+                            Save Edits
+                      <span class="material-icons transparent">add</span>
+                    </button>
                     <p id = "goBack" class= "normal go-back">Go back</p>
-                  </div> 
-                                                            
-             </div>
-           </div>
-
-  
+                </div> 
+            </div>
+        </div>
     </aside>
 
-
     <!-- KALENDER VIEW -->
+    
    <main> 
         <div class="calendar-container">
             <div class="month-container flex justify-space-between align-center">

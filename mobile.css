@@ -1,85 +1,96 @@
 /* MOBILE */
-/* max-width: 480px */
-body{
-    margin: 0rem 0rem;
+/* max-width: 600px */
+
+body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas:
+    "aside"
+    ;
 }
 
-main {
-    display:none;
-}
+/* ---- ASIDE ---- */
 
 aside {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100%;
-    height: 100vh;
 }
 
-input {
-    width: 15rem;
-}
-
-h4 {
-    margin-bottom: 1rem;
-}
-
-.button-primary button {
-    width: 15rem;
-    font-size: 1rem;
-}
-
-.button-box button {
-    width: 15rem;
-    font-size: 1rem;
-}
 .primary-content {
+    display: grid;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: 3fr 2.5fr .1fr;
+    grid-template-areas: 
+    "time-n-date"
+    "todo-container"
+    "add-button"
+    ;
 }
 
-.button-primary {
-    grid-column: 1;
-    grid-row: 3;
+/* Time and date */
+
+.time-and-date h3 {
+    font-size: 1.6rem;
 }
 
-.p-todo{
-    font-size: 1.125rem;
-    margin: 0.5rem;
+.time-and-date h3:nth-child(2) {
+    margin-top: 0.5rem;
 }
 
-.div-todo{
-    padding: 0.5rem 0rem;
+/* Todo container */
+
+.todo-container {
+    margin: 1.5rem 0;
 }
 
-
-.todo-input-field {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+.date, .time {
+    font-size: 1rem;
 }
+
+.description {
+    margin-top: 0rem;
+    font-size: 1.3rem;
+}
+
+/* ---- TODO INPUT FIELD ---- */
 
 .new-items-box {
+    display: grid;
+    padding: 2rem;
+    column-gap: 5rem;
+    height: 100%; 
+    grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
-    grid-template-rows: .1fr 4fr .1fr;
-    /* width: 15rem; */
-    height: 100vh; 
-    padding-top: 3rem;
-    padding-bottom: 3rem; 
+    overflow: hidden;
+    grid-template-areas: 
+    "h4"
+    "input"
+    "input-button"
+    ;
 }
 
 .input-form {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: center;
+    padding: 2rem 0;
+    display: unset;
+    height: 100%;
 }
 
-.button-box {
-    grid-column: 1;
-    grid-row: 3;
-    margin-top: 1rem; 
+.input-form label {
+    margin-top: 1rem;
+}
+
+.new-items-box h4 {
+    font-size: 1.6rem;
+    width: 100%;
+}
+
+input {
+    font-size: 1.3rem;
+}
+
+/* ---- MAIN ---- */
+
+main {
+    display: none;
 }

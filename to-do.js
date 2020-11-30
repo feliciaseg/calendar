@@ -6,34 +6,73 @@ window.onload = todoMain;
 function todoMain() {
     addTodoEventListeners();
     showTodos();
+    createNotification();
 }
 
 /** Adds event listeners */
 function addTodoEventListeners() {
     const btnOpenNewTask = document.getElementById("openNewTask");
-    btnOpenNewTask.addEventListener("click", openNewDiv);
+    btnOpenNewTask.addEventListener("click", openNewTask);
 
     const btnAddItem = document.getElementById("addNewItem");
     btnAddItem.addEventListener("click", addNewItem)
-   
+
+    const goBackLink = document.getElementById("goBack")
+    goBackLink.addEventListener("click", goBack);
+
+    
+
 }
 
+// /**  */
+function goBack(){
+ clearInput();
+ openNewDiv();
+ changeHeadingToNew();
+}
 
+//Lägg till changeToNew(); i Go back funktionen (kommentar till mig själv/FS)
+
+
+function openNewTask(){
+    clearInput();
+    openNewDiv();
+    showAddNewItemBtn();
+}
+
+//skriva om funktionen på samma sätt som knapparna??
 
 /** Displays or hide the divs*/
 function openNewDiv(){
-    newTaskDiv = document.getElementById("newTaskDiv")
-    primaryDiv =  document.getElementById("primaryContentDiv")
+    const newTaskDiv = document.getElementById("newTaskDiv");
+    const primaryDiv = document.getElementById("primaryContentDiv");
 
     newTaskDiv.classList.toggle("none");
     primaryDiv.classList.toggle("none");
 }
 
+/** Shows ''Add new Item'' button */
+function showAddNewItemBtn(){
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.remove("none");
+
+    const saveEditsBtn = document.getElementById("saveEditsBtn")
+    saveEditsBtn.classList.add("none");
+}
+
+/** Shows ''Save Edits'' button */
+function showSaveEditsBtn(){
+    const saveEditsBtn = document.getElementById("saveEditsBtn")
+    saveEditsBtn.classList.remove("none");
+    
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.add("none");
+}
 
 /** Saves input value from the form */
 let tasks = []
-
 function addNewItem(event){
+    changeHeadingToNew()
     const inputFields = document.querySelectorAll("input")
 
     // Counter for the amount of filled inputfields
@@ -71,7 +110,6 @@ function updateLS(task) {
     tasks.push(task);
     localStorage.setItem("savedTasks", JSON.stringify(tasks));
     showTodos();
-    
 }
 
 /** Empties the todo container*/
@@ -81,39 +119,53 @@ function emptyTodoContainer(){
    
     while (containerChildren.length > 0) {
         containerChildren[0].remove()
-    }
-    
-    
+
+    } 
+
 }
 
 /** Shows all saved tasks/todos */
 function showTodos() {
-     emptyTodoContainer();
+    emptyTodoContainer();
 
-     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
-     const todoContainer = document.getElementById("todos");
+    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+    const todoContainer = document.getElementById("todos");
      
+    let number= 0;
      for (task in savedTasks) {
         const div = document.createElement("div");
+        div.classList.add("todo")
         const pDate = document.createElement("p");
         pDate.classList.add("date")
         const pTime = document.createElement("p");
+        pTime.classList.add("time")
         const pDescription = document.createElement ("p");
-
+        pDescription.classList.add("description")
+        
         const removeButton = document.createElement("span"); 
-        removeButton.classList.add("material-icons");
+        removeButton.classList.add("material-icons", "remove");
         removeButton.innerHTML = 'close';
+        removeButton.addEventListener("click", function(){
+        removeTodo(removeButton);
+        })
 
         const editButton = document.createElement("span");
-        editButton.classList.add("material-icons");
+        editButton.classList.add("material-icons", "editButton", "edit");       
+        editButton.setAttribute("id", number++);
         editButton.innerHTML = 'edit';
+        editButton.addEventListener("click", function(){
+            let buttonID = (editButton).id
+            openNewDiv();
+            openEditor(buttonID, savedTasks);
+            //BUTTONID = INDEX OF CLICKED ELEMENT
+        })
     
          // Append elements
         todoContainer.append(div);
-        div.append(pDate);
         div.append(pTime);
         div.append(removeButton);
         div.append(editButton);
+        div.append(pDate);
         div.append(pDescription);
     
          // Text in elements
@@ -121,14 +173,101 @@ function showTodos() {
         pTime.innerHTML = (savedTasks[task].time);
         pDescription.innerHTML = (savedTasks[task].description);  
         
+
         //Styling
         pDate.classList.add("bold", "p-todo");
-        pTime.classList.add("semi-bold", "p-todo");
-        pDescription.classList.add("p-todo");
+        pTime.classList.add("bold", "p-todo");
+        pDescription.classList.add("p-todo", "normal");
         div.classList.add("div-todo");
         
         createNotification();
     } 
   
 } 
+
+
+ /** Opens 'edit-mode' 
+  * @param {number} buttonID
+  * @param {Array} savedTasks
+ */
+function openEditor(buttonID, savedTasks){
+    showSaveEditsBtn();
+    const saveEditsBtn = document.getElementById("saveEditsBtn")
+    changeHeadingToEdit();
+
+    
+
+    //INPUTFIELDS
+  
+    const inputDescription = document.getElementById("description");
+    const inputDate = document.getElementById("datePicked");
+    const inputTime = document.getElementById("timePicked");
+
+   
+    //PLACEHOLDERS IN INPUTFIELDS
+    //BUTTONID = INDEX OF CLICKED ELEMENT
+    inputDescription.value = savedTasks[buttonID].description; 
+    inputDate.value = savedTasks[buttonID].date;
+    inputTime.value = savedTasks[buttonID].time;
+    
+    
+    saveEditsBtn.addEventListener("click", function(){
+    savedTasks[buttonID].description = inputDescription.value;
+    savedTasks[buttonID].date = inputDate.value;
+    savedTasks[buttonID].time = inputTime.value;
+    
+    // // UPDATE LS
+    localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+    changeHeadingToNew();
+    openNewDiv();
+    showTodos();
+    createNotification();
+    });
+}
+
+
+function changeHeadingToEdit(){
+    const heading = document.getElementById("heading");
+    heading.innerHTML = "Edit Task";
+}
+
+function changeHeadingToNew(){
+    const heading = document.getElementById("heading");
+    heading.innerHTML = "New Task";
+}
+
+
+/** Changes to the "saveEditsBtn" */
+function changeBtn(){
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.toggle("none");
+
+    const saveEditsBtn = document.getElementById("saveEditsBtn");
+    saveEditsBtn.classList.toggle("none");
+}
+
+/** Clears all Inputfields */
+function clearInput(){
+    //Get and clear inputfields
+    document.getElementById("description").value = "";
+    document.getElementById("datePicked").value = "";
+    document.getElementById("timePicked").value = "";
+}
+
+
+function removeTodo(button) {
+    const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
+    const todos = document.getElementsByClassName("todo")
+    
+    console.log(button.parentElement)
+    for (i = 0; i < todos.length; i++) {
+        if (button.parentElement === todos[i]) {
+            savedTasks.splice(i, 1)
+            localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+            showTodos();
+            createNotification();
+        }
+    }
+}
+
 

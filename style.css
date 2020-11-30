@@ -17,6 +17,10 @@ body {
     "aside main";
 }
 
+button:focus {
+    outline: none;
+}
+
 /* --- ASIDE ---- */
 
 aside {

@@ -1,4 +1,4 @@
-/** Created notification in calendar */
+/** Creates notifications in calendar */
 function createNotification() {
     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
     const calendarDivs = document.getElementsByClassName("calendar-div")

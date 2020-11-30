@@ -179,11 +179,12 @@ function showTodos() {
 } 
 
 
-// /** Opens 'edit-mode' 
-//  * @param {number} buttonID
-//  * @param {Array} savedTasks
-// */
+ /** Opens 'edit-mode' 
+  * @param {number} buttonID
+  * @param {Array} savedTasks
+ */
 function openEditor(buttonID, savedTasks){
+    
     showSaveEditsBtn();
     const saveEditsBtn = document.getElementById("saveEditsBtn")
     
@@ -217,7 +218,6 @@ function openEditor(buttonID, savedTasks){
 }
 
 
-
 /** Clears all Inputfields */
 function clearInput(){
     //Get and clear inputfields
@@ -225,6 +225,8 @@ function clearInput(){
     document.getElementById("datePicked").value = "";
     document.getElementById("timePicked").value = "";
 }
+
+
 
 
 function removeTodo(button) {

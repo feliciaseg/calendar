@@ -77,7 +77,7 @@ aside {
 }
 
 .input-form label {
-    margin-top: 1rem;
+    margin: 1rem 0 0.5rem 0;
 }
 
 .new-items-box h4 {
@@ -85,7 +85,7 @@ aside {
     width: 100%;
 }
 
-input {
+.input-form input {
     font-size: 1.3rem;
 }
 

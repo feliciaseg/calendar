@@ -194,12 +194,11 @@ aside {
     grid-area: input;
 }
 
-label {
+.input-form label {
     display: flex;
     flex-direction: column;
     justify-content: left;
-    padding-top: 2.2rem;
-    padding-bottom: .3rem;
+    margin: 2rem 0 0.5rem 0;
     font-size: 1.5rem;
 }
 
@@ -281,6 +280,8 @@ main {
     text-decoration: underline;
     text-align: left;
     cursor: pointer;
+    margin: 0;
+    margin-top: 1rem;
 }
 /* CALENDAR */
 

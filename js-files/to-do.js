@@ -1,9 +1,6 @@
 
-/** Array to save object (task) in*/
+/** Array to save object (task) in */
 let tasks = []
-
-/** Sets function to run on window load */
-window.onload = todoMain;
 
 /** Functions to run on window load */
 function todoMain() {
@@ -25,16 +22,14 @@ function addTodoEventListeners() {
 
 }
 
-// /**  */
+/** */
 function goBack(){
  clearInput();
  showPrimaryDiv();
  changeHeadingToNew();
 }
 
-
-
-
+/** */
 function openNewTask(){
     clearInput();
     showNewTaskDiv();
@@ -57,6 +52,12 @@ function showNewTaskDiv(){
 
     const primaryDiv = document.getElementById("primaryContentDiv");
     primaryDiv.classList.add("none")
+
+    const inputFields = document.querySelectorAll("input")
+    // Removes input borders
+    for (i = 0; i < inputFields.length; i++) {
+        inputFields[i].style.border = "none"
+    }
 }
 
 /** Shows ''Add new Item'' button */
@@ -126,9 +127,7 @@ function emptyTodoContainer(){
    
     while (containerChildren.length > 0) {
         containerChildren[0].remove()
-
     } 
-
 }
 
 /** Shows all saved tasks/todos */
@@ -181,7 +180,7 @@ function showTodos() {
         pDescription.innerHTML = (savedTasks[task].description);  
         
 
-        //Styling
+        // Styling
         pDate.classList.add("bold", "p-todo");
         pTime.classList.add("bold", "p-todo");
         pDescription.classList.add("p-todo", "normal");
@@ -201,11 +200,11 @@ function openEditor(buttonID, savedTasks){
     showSaveEditsBtn();
     const saveEditsBtn = document.getElementById("saveEditsBtn")
     changeHeadingToEdit();
-
     
 
+
     //INPUTFIELDS
-  
+    const inputFields = document.querySelectorAll("input")
     const inputDescription = document.getElementById("description");
     const inputDate = document.getElementById("datePicked");
     const inputTime = document.getElementById("timePicked");
@@ -219,27 +218,46 @@ function openEditor(buttonID, savedTasks){
     
     
     saveEditsBtn.addEventListener("click", function(){
-    savedTasks[buttonID].description = inputDescription.value;
-    savedTasks[buttonID].date = inputDate.value;
-    savedTasks[buttonID].time = inputTime.value;
-    
-    // // UPDATE LS
-    localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+        // Counter for the amount of filled inputfields
+        let correctInput = 0;
 
-    changeHeadingToNew();
-    showTodos();
-    createNotification();
-    showPrimaryDiv();  
+        // Sets a red frame around the empty inputfields
+        for (i = 0; i < inputFields.length; i++) {
+            if (!inputFields[i].value) {
+                inputFields[i].style.border = "0.1rem #FF716E solid"
+            }
+            else {
+                inputFields[i].style.border = "none"
+                correctInput += 1;
+            }
+        }
+
+        // Edit todo if all inputfields are filled
+        if (correctInput === inputFields.length) {
+           savedTasks[buttonID].description = inputDescription.value;
+            savedTasks[buttonID].date = inputDate.value;
+            savedTasks[buttonID].time = inputTime.value;
+    
+            // UPDATE LS
+            localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
+
+            changeHeadingToNew();
+            showTodos();
+            createNotification();
+            showPrimaryDiv(); 
+        }
+      
     })
 
 }
 
+/** Changes heading "Edit Task" */
 function changeHeadingToEdit(){
     const heading = document.getElementById("heading");
     heading.innerHTML = "Edit Task";
 }
 
-
+/** Changes heading "New Task" */
 function changeHeadingToNew(){
     const heading = document.getElementById("heading");
     heading.innerHTML = "New Task";
@@ -258,18 +276,20 @@ function changeBtn(){
 
 /** Clears all Inputfields */
 function clearInput(){
-    //Get and clear inputfields
+    // Get and clear inputfields
     document.getElementById("description").value = "";
     document.getElementById("datePicked").value = "";
     document.getElementById("timePicked").value = "";
 }
 
-
+/**
+ * Removes todo
+ * @param {Element} button 
+ */
 function removeTodo(button) {
     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
     const todos = document.getElementsByClassName("todo")
     
-    console.log(button.parentElement)
     for (i = 0; i < todos.length; i++) {
         if (button.parentElement === todos[i]) {
             savedTasks.splice(i, 1)

@@ -1,6 +1,6 @@
 # Calendar
 
-Skapat av Felicia Segerholm, Isabell Betar och Maria Helena Norén
+Skapat av Felicia Segerholm, Isabell Betar och Maria Helena Norén.
 
 Vi har i HTML, CSS och Javascript skapat ett kalenderverktyg där användaren kan skapa, ändra och radera todos.
 Alla todos och ändringar sparas till Local Storage.

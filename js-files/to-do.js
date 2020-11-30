@@ -22,21 +22,21 @@ function addTodoEventListeners() {
 
 }
 
-/** */
+/** Functions that run when the "go-back" link is clicked */
 function goBack(){
  clearInput();
  showPrimaryDiv();
  changeHeadingToNew();
 }
 
-/** */
+/** Functions that run when the "Add new Item" button in "Primary Content" div is clicked  */
 function openNewTask(){
     clearInput();
     showNewTaskDiv();
     showAddNewItemBtn();
 }
 
-
+/** Shows "Primary content" div and hides "New Task" div */
 function showPrimaryDiv(){
     const primaryDiv = document.getElementById("primaryContentDiv");
     primaryDiv.classList.remove("none")
@@ -45,7 +45,7 @@ function showPrimaryDiv(){
     newTaskDiv.classList.add("none");
 }
 
-
+/** Shows "New Task" div and hides "Primary Content" div */
 function showNewTaskDiv(){
     const newTaskDiv = document.getElementById("newTaskDiv");
     newTaskDiv.classList.remove("none");
@@ -137,7 +137,7 @@ function showTodos() {
     const savedTasks = JSON.parse(localStorage.getItem("savedTasks"));
     const todoContainer = document.getElementById("todos");
      
-    let number= 0;
+    let number= 0; // To add a specific id to each button same as index number
      for (task in savedTasks) {
         const div = document.createElement("div");
         div.classList.add("todo")

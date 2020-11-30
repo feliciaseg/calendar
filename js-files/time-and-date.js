@@ -23,7 +23,7 @@ function currentTime(){
     let minutes = addZero(date.getMinutes());
     let time = hours + ":" + minutes
     
-    // Visa i HTML dokumentet
+    //Show in div
     let showTime = document.getElementById("showTime")
     showTime.innerHTML = time;
 }
@@ -37,24 +37,24 @@ function currentDate(){
     /** Gets the current date */
     let date = new Date();
     
-    // Veckodagen
+    // Weekday
     let NumberOfday = date.getDay();
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let weekday = (days[NumberOfday]);
     
-    //Månaden
+    //Month
     let NumberOfmonth = date.getMonth();
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     let month = (months[NumberOfmonth]);
     
-    // Dagen i månaden
+    // Day of month
     let dayOfTheMonth = date.getDate();
     
-    //Allting tillsammans
+    //All together
     let todaysDate = weekday + "," + "<br> " + month + " " + dayOfTheMonth;
 
-    //Visa det i HTML
+    //Show
     let showDate = document.getElementById("showDate")
     showDate.innerHTML = todaysDate;
 }
-// Behöver vi ett set-interval här?
+

@@ -20,6 +20,8 @@ function addTodoEventListeners() {
     const goBackLink = document.getElementById("goBack")
     goBackLink.addEventListener("click", goBack);
 
+    
+
 }
 
 // /**  */
@@ -34,12 +36,12 @@ function openNewTask(){
     showAddNewItemBtn();
 }
 
-
+//skriva om funktionen på samma sätt som knapparna??
 
 /** Displays or hide the divs*/
 function openNewDiv(){
     const newTaskDiv = document.getElementById("newTaskDiv")
-    const primaryDiv =  document.getElementById("primaryContentDiv")
+    const primaryDiv = document.getElementById("primaryContentDiv")
 
     newTaskDiv.classList.toggle("none");
     primaryDiv.classList.toggle("none");
@@ -147,7 +149,6 @@ function showTodos() {
         editButton.addEventListener("click", function(){
             let buttonID = (editButton).id
             openNewDiv();
-            showSaveEditsBtn();
             openEditor(buttonID, savedTasks);
             //BUTTONID = INDEX OF CLICKED ELEMENT
         })
@@ -183,7 +184,7 @@ function showTodos() {
 //  * @param {Array} savedTasks
 // */
 function openEditor(buttonID, savedTasks){
-    
+    showSaveEditsBtn();
     const saveEditsBtn = document.getElementById("saveEditsBtn")
     
     //INPUTFIELDS
@@ -195,25 +196,26 @@ function openEditor(buttonID, savedTasks){
    
     //PLACEHOLDERS IN INPUTFIELDS
     //BUTTONID = INDEX OF CLICKED ELEMENT
-    inputDescription.value = savedTasks[buttonID].description 
-    inputDate.value = savedTasks[buttonID].date
-    inputTime.value = savedTasks[buttonID].time
+    inputDescription.value = savedTasks[buttonID].description; 
+    inputDate.value = savedTasks[buttonID].date;
+    inputTime.value = savedTasks[buttonID].time;
     
     
     saveEditsBtn.addEventListener("click", function(){
+    savedTasks[buttonID].description = inputDescription.value;
+    savedTasks[buttonID].date = inputDate.value;
+    savedTasks[buttonID].time = inputTime.value;
     
-    savedTasks[buttonID].description = inputDescription.value
-    savedTasks[buttonID].date = inputDate.value
-    savedTasks[buttonID].time = inputTime.value
-
     // // UPDATE LS
     localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
-    
+     openNewDiv();
      showTodos();
      createNotification();
-     })
+     
+    })
     
 }
+
 
 
 /** Clears all Inputfields */

@@ -28,7 +28,11 @@ function addTodoEventListeners() {
 function goBack(){
  clearInput();
  openNewDiv();
+ changeHeadingToNew();
 }
+
+//Lägg till changeToNew(); i Go back funktionen (kommentar till mig själv/FS)
+
 
 function openNewTask(){
     clearInput();
@@ -68,6 +72,7 @@ function showSaveEditsBtn(){
 /** Saves input value from the form */
 let tasks = []
 function addNewItem(event){
+    changeHeadingToNew()
     const inputFields = document.querySelectorAll("input")
 
     // Counter for the amount of filled inputfields
@@ -114,7 +119,9 @@ function emptyTodoContainer(){
    
     while (containerChildren.length > 0) {
         containerChildren[0].remove()
+
     } 
+
 }
 
 /** Shows all saved tasks/todos */
@@ -186,7 +193,10 @@ function showTodos() {
 function openEditor(buttonID, savedTasks){
     showSaveEditsBtn();
     const saveEditsBtn = document.getElementById("saveEditsBtn")
+    changeHeadingToEdit();
+
     
+
     //INPUTFIELDS
   
     const inputDescription = document.getElementById("description");
@@ -208,13 +218,32 @@ function openEditor(buttonID, savedTasks){
     
     // // UPDATE LS
     localStorage.setItem("savedTasks", JSON.stringify(savedTasks));
-     openNewDiv();
-     showTodos();
-     createNotification();
-     
-    })
+    changeHeadingToNew();
+    openNewDiv();
+    showTodos();
+    createNotification();    
     
 }
+
+
+function changeHeadingToEdit(){
+    const heading = document.getElementById("heading");
+    heading.innerHTML = "Edit Task";
+}
+
+function changeHeadingToNew(){
+    const heading = document.getElementById("heading");
+    heading.innerHTML = "New Task";
+}
+
+
+/** Changes to the "saveEditsBtn" */
+function changeBtn(){
+    const addNewItemBtn = document.getElementById("addNewItem");
+    addNewItemBtn.classList.toggle("none");
+
+    const saveEditsBtn = document.getElementById("saveEditsBtn");
+    saveEditsBtn.classList.toggle("none");
 
 
 /** Clears all Inputfields */

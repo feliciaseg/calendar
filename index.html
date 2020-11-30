@@ -55,10 +55,11 @@
                     <input type="text" name="datepicker" id="description" maxlength="35">
 
                     <label for="start">Date</label>
-                    <input type="date" name="bday" id="datePicked" pattern="\d{4}-\d{2}-\d{2}">
+                    <input type="date" name="bday" id="datePicked" required pattern="\d{4}-\d{2}-\d{2}" placeholder="yyyy-mm-dd">
 
                     <label for="end">Time</label>
-                    <input type="time"  name="appt" id="timePicked">
+                    <input type="time"  name="appt" id="timePicked" required
+                    pattern="[0-9]{2}:[0-9]{2}" placeholder="--:--">
 
                 </div>
            
@@ -73,6 +74,7 @@
                       Save Edits
                      <span class="material-icons transparent">add</span> </button>
                     <p id = "goBack" class= "normal go-back">Go back</p>
+
                   </div> 
                                                             
              </div>

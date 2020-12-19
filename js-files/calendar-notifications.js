@@ -17,7 +17,6 @@ function createNotification() {
     for (i = 0; i < calendarDivs.length; i++) {
         // Counts the amount of todos which occur on the same day
         let counter = 0;
-
         for (task in savedTasks) {
             if (savedTasks[task].date === calendarDivs[i].id) {
                 const div = document.createElement("div")
@@ -25,6 +24,7 @@ function createNotification() {
                 counter += 1
                 p.innerHTML = counter    
                 div.append(p);
+                calendarDivs[i].classList.add("is-attached")
                 calendarDivs[i].append(div)
                 div.setAttribute("class", "primary-background notification")
             }

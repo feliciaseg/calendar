@@ -9,4 +9,4 @@ Klickar man på ett datum i kalendern visas endast todo's för just den dagen i 
 
 Avgränsningar: I ärendelistan fanns en punkt som var att "skapa och designa titeln för verktyget". Efter att vi tagit fram och skapat våran skiss bestämde vi oss för att vi ej ville ha en titel på våran kalender, och fick ok från David att ej ha med det. 
 
-Demo: https://feliciaseg.github.io/Calendar/
+Demo: https://feliciaseg.github.io/calendar/
